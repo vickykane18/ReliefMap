@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ReliefMap Frontend</title>
+</head>
+<body>
+  <h1>Frontend ready</h1>
+  <button onclick="loadData()">Get Backend Data</button>
+  <p id="output"></p>
+
+  <script>
+    function loadData() {
+      fetch("http://127.0.0.1:5000/api/data")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("output").innerText = data.message;
+        });
+    }
+  </script>
+</body>
+</html>
