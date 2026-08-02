@@ -1,0 +1,405 @@
+/* ===========================================================
+   ReliefMap
+   Analytics Stylesheet
+   Author : Vigneshan S
+=========================================================== */
+
+/* ===========================================================
+   ANALYTICS SECTION
+=========================================================== */
+
+.analytics{
+
+    margin-top:60px;
+
+}
+
+/* ===========================================================
+   ANALYTICS GRID
+=========================================================== */
+
+.chart-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:30px;
+
+    margin-top:30px;
+
+}
+
+/* ===========================================================
+   CHART CARD
+=========================================================== */
+
+.chart-card{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.chart-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+/* ===========================================================
+   CHART TITLE
+=========================================================== */
+
+.chart-card h3{
+
+    margin-bottom:20px;
+
+    font-size:1.2rem;
+
+    color:var(--text);
+
+}
+
+/* ===========================================================
+   CANVAS
+=========================================================== */
+
+.chart-card canvas{
+
+    width:100% !important;
+
+    height:350px !important;
+
+}
+
+/* ===========================================================
+   KPI GRID
+=========================================================== */
+
+.analytics-kpi{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:35px;
+
+}
+
+/* ===========================================================
+   KPI CARD
+=========================================================== */
+
+.analytics-kpi .kpi{
+
+    background:var(--card);
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+
+.analytics-kpi .kpi:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.analytics-kpi .kpi i{
+
+    font-size:36px;
+
+    color:var(--primary);
+
+    margin-bottom:15px;
+
+}
+
+.analytics-kpi .kpi h2{
+
+    margin-bottom:8px;
+
+    color:var(--primary);
+
+}
+
+.analytics-kpi .kpi span{
+
+    color:var(--text-light);
+
+}
+
+/* ===========================================================
+   TREND CARDS
+=========================================================== */
+
+.trend-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+    margin-top:35px;
+
+}
+
+.trend-card{
+
+    background:var(--card);
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.trend-card h4{
+
+    margin-bottom:10px;
+
+}
+
+.trend-value{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:var(--primary);
+
+    margin:15px 0;
+
+}
+
+.trend-up{
+
+    color:var(--success);
+
+    font-weight:600;
+
+}
+
+.trend-down{
+
+    color:var(--danger);
+
+    font-weight:600;
+
+}
+
+/* ===========================================================
+   FILTER BAR
+=========================================================== */
+
+.analytics-filter{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.analytics-filter select{
+
+    width:180px;
+
+}
+
+/* ===========================================================
+   PIE LEGEND
+=========================================================== */
+
+.pie-legend{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.pie-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.pie-color{
+
+    width:15px;
+
+    height:15px;
+
+    border-radius:50%;
+
+}
+
+/* ===========================================================
+   SUMMARY PANEL
+=========================================================== */
+
+.summary-panel{
+
+    margin-top:35px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    border-radius:20px;
+
+    padding:30px;
+
+}
+
+.summary-panel h3{
+
+    margin-bottom:15px;
+
+}
+
+.summary-panel p{
+
+    color:#e2e8f0;
+
+    line-height:1.8;
+
+}
+
+/* ===========================================================
+   CHART ANIMATION
+=========================================================== */
+
+.chart-card{
+
+    animation:chartFade .7s ease;
+
+}
+
+@keyframes chartFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:1200px){
+
+    .analytics-kpi{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .trend-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .chart-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .analytics-kpi{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .trend-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .analytics-filter{
+
+        flex-direction:column;
+
+        gap:20px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .chart-card{
+
+        padding:18px;
+
+    }
+
+    .summary-panel{
+
+        padding:20px;
+
+    }
+
+}

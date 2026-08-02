@@ -1,0 +1,425 @@
+/* ===========================================================
+   ReliefMap
+   Modal Stylesheet
+   Author : Vigneshan S
+=========================================================== */
+
+/* ===========================================================
+   MODAL BACKDROP
+=========================================================== */
+
+.modal{
+
+    position:fixed;
+
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:rgba(15,23,42,.65);
+
+    backdrop-filter:blur(8px);
+
+    z-index:9999;
+
+    animation:fadeModal .35s ease;
+
+}
+
+.modal.active{
+
+    display:flex;
+
+}
+
+/* ===========================================================
+   MODAL BOX
+=========================================================== */
+
+.modal-content{
+
+    width:90%;
+
+    max-width:700px;
+
+    background:var(--card);
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    box-shadow:0 30px 60px rgba(0,0,0,.25);
+
+    animation:scaleModal .35s ease;
+
+}
+
+/* ===========================================================
+   MODAL HEADER
+=========================================================== */
+
+.modal-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:22px 28px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+}
+
+.modal-header h2{
+
+    font-size:1.4rem;
+
+}
+
+.close-modal{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    background:rgba(255,255,255,.2);
+
+    transition:.3s;
+
+}
+
+.close-modal:hover{
+
+    transform:rotate(90deg);
+
+    background:rgba(255,255,255,.35);
+
+}
+
+/* ===========================================================
+   MODAL BODY
+=========================================================== */
+
+.modal-body{
+
+    padding:30px;
+
+}
+
+.modal-body p{
+
+    line-height:1.8;
+
+    color:var(--text-light);
+
+}
+
+/* ===========================================================
+   MODAL FOOTER
+=========================================================== */
+
+.modal-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    padding:20px 30px;
+
+    border-top:1px solid var(--border);
+
+}
+
+/* ===========================================================
+   TOAST
+=========================================================== */
+
+#toastContainer{
+
+    position:fixed;
+
+    top:30px;
+
+    width:calc(100% - 330px);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    z-index:10000;
+
+}
+
+.toast{
+
+    min-width:320px;
+
+    background:white;
+
+    border-left:5px solid var(--primary);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    display:flex;
+
+    gap:15px;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+    animation:toastSlide .4s ease;
+
+}
+
+.toast.success{
+
+    border-left-color:#16a34a;
+
+}
+
+.toast.error{
+
+    border-left-color:#dc2626;
+
+}
+
+.toast.warning{
+
+    border-left-color:#f59e0b;
+
+}
+
+.toast i{
+
+    font-size:24px;
+
+}
+
+.toast.success i{
+
+    color:#16a34a;
+
+}
+
+.toast.error i{
+
+    color:#dc2626;
+
+}
+
+.toast.warning i{
+
+    color:#f59e0b;
+
+}
+
+/* ===========================================================
+   CONFIRM DIALOG
+=========================================================== */
+
+.confirm-box{
+
+    text-align:center;
+
+    padding:20px;
+
+}
+
+.confirm-box i{
+
+    font-size:60px;
+
+    color:var(--warning);
+
+    margin-bottom:20px;
+
+}
+
+.confirm-actions{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    margin-top:30px;
+
+}
+
+/* ===========================================================
+   LOADING MODAL
+=========================================================== */
+
+.loading-modal{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:40px;
+
+}
+
+.loading-spinner{
+
+    width:70px;
+
+    height:70px;
+
+    border:6px solid #dbeafe;
+
+    border-top:6px solid var(--primary);
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+}
+
+/* ===========================================================
+   ANIMATIONS
+=========================================================== */
+
+@keyframes fadeModal{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes scaleModal{
+
+    from{
+
+        transform:scale(.8);
+
+        opacity:0;
+
+    }
+
+    to{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes toastSlide{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(100px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:768px){
+
+    .modal-content{
+
+        width:95%;
+
+    }
+
+    .modal-footer{
+
+        flex-direction:column;
+
+    }
+
+    #toastContainer{
+
+        left:20px;
+
+        right:20px;
+
+    }
+
+    .toast{
+
+        min-width:auto;
+
+        width:100%;
+
+    }
+
+}

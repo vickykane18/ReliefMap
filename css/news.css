@@ -1,0 +1,503 @@
+/* ===========================================================
+   ReliefMap
+   News Stylesheet
+   Author : Vigneshan S
+=========================================================== */
+
+/* ===========================================================
+   NEWS SECTION
+=========================================================== */
+
+.news-section{
+
+    margin-top:60px;
+
+}
+
+/* ===========================================================
+   NEWS GRID
+=========================================================== */
+
+.news-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:30px;
+
+}
+
+/* ===========================================================
+   NEWS CARD
+=========================================================== */
+
+.news-card{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+}
+
+.news-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:var(--shadow-hover);
+
+}
+
+/* ===========================================================
+   NEWS IMAGE
+=========================================================== */
+
+.news-card img{
+
+    width:100%;
+
+    height:230px;
+
+    object-fit:cover;
+
+    transition:.5s;
+
+}
+
+.news-card:hover img{
+
+    transform:scale(1.05);
+
+}
+
+/* ===========================================================
+   NEWS CONTENT
+=========================================================== */
+
+.news-content{
+
+    padding:25px;
+
+}
+
+.news-content h3{
+
+    margin:18px 0 12px;
+
+    line-height:1.4;
+
+}
+
+.news-content p{
+
+    color:var(--text-light);
+
+    line-height:1.8;
+
+}
+
+.news-content small{
+
+    display:block;
+
+    margin-top:18px;
+
+    color:var(--text-light);
+
+}
+
+/* ===========================================================
+   CATEGORY TAG
+=========================================================== */
+
+.news-tag{
+
+    display:inline-block;
+
+    padding:8px 15px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-size:.8rem;
+
+    font-weight:600;
+
+}
+
+.news-tag.flood{
+
+    background:#2563eb;
+
+}
+
+.news-tag.medical{
+
+    background:#dc2626;
+
+}
+
+.news-tag.food{
+
+    background:#16a34a;
+
+}
+
+.news-tag.warning{
+
+    background:#f59e0b;
+
+}
+
+/* ===========================================================
+   FEATURED NEWS
+=========================================================== */
+
+.featured-news{
+
+    margin-bottom:40px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8
+    );
+
+    color:white;
+
+    border-radius:24px;
+
+    overflow:hidden;
+
+    display:grid;
+
+    grid-template-columns:1.5fr 1fr;
+
+}
+
+.featured-news img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+}
+
+.featured-content{
+
+    padding:40px;
+
+}
+
+.featured-content h2{
+
+    margin:20px 0;
+
+}
+
+.featured-content p{
+
+    color:#e2e8f0;
+
+    line-height:1.9;
+
+}
+
+.featured-content button{
+
+    margin-top:25px;
+
+}
+
+/* ===========================================================
+   LIVE TICKER
+=========================================================== */
+
+.live-ticker{
+
+    margin:35px 0;
+
+    background:#fee2e2;
+
+    color:#b91c1c;
+
+    border-radius:15px;
+
+    display:flex;
+
+    align-items:center;
+
+    overflow:hidden;
+
+}
+
+.ticker-title{
+
+    background:#dc2626;
+
+    color:white;
+
+    padding:16px 22px;
+
+    font-weight:600;
+
+}
+
+.ticker-content{
+
+    padding-left:20px;
+
+    white-space:nowrap;
+
+    animation:ticker 20s linear infinite;
+
+}
+
+@keyframes ticker{
+
+    from{
+
+        transform:translateX(100%);
+
+    }
+
+    to{
+
+        transform:translateX(-100%);
+
+    }
+
+}
+
+/* ===========================================================
+   ACTIVITY FEED
+=========================================================== */
+
+.activity-section{
+
+    margin-top:50px;
+
+}
+
+.activity-list{
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+.activity-list li{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 25px;
+
+    border-bottom:1px solid var(--border);
+
+    transition:.3s;
+
+}
+
+.activity-list li:last-child{
+
+    border-bottom:none;
+
+}
+
+.activity-list li:hover{
+
+    background:#f8fafc;
+
+}
+
+.activity-list i{
+
+    color:var(--primary);
+
+    margin-right:10px;
+
+}
+
+.activity-list span{
+
+    color:var(--text-light);
+
+    font-size:.85rem;
+
+}
+
+/* ===========================================================
+   NOTIFICATIONS
+=========================================================== */
+
+.notification-section{
+
+    margin-top:50px;
+
+}
+
+.notification-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+.notification-card{
+
+    padding:25px;
+
+    border-radius:18px;
+
+    color:white;
+
+    box-shadow:var(--shadow);
+
+}
+
+.notification-card.critical{
+
+    background:#dc2626;
+
+}
+
+.notification-card.warning{
+
+    background:#f59e0b;
+
+}
+
+.notification-card.success{
+
+    background:#16a34a;
+
+}
+
+/* ===========================================================
+   LEADERBOARD
+=========================================================== */
+
+.leaderboard{
+
+    margin-top:50px;
+
+}
+
+.leaderboard table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    background:var(--card);
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+}
+
+.leaderboard th{
+
+    background:var(--primary);
+
+    color:white;
+
+    padding:18px;
+
+    text-align:left;
+
+}
+
+.leaderboard td{
+
+    padding:18px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.leaderboard tbody tr:hover{
+
+    background:#eff6ff;
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:1200px){
+
+    .news-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+    .notification-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .featured-news{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .news-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .activity-list li{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .featured-content{
+
+        padding:25px;
+
+    }
+
+}

@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>ReliefMap | AI Disaster Relief Coordination Platform</title>
+
+    <!-- =====================================================
+         Google Fonts
+    ====================================================== -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- =====================================================
+         Font Awesome
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- =====================================================
+         Leaflet
+    ====================================================== -->
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <!-- =====================================================
+         CSS Files
+    ====================================================== -->
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/cards.css">
+    <link rel="stylesheet" href="css/map.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="css/news.css">
+    <link rel="stylesheet" href="css/ai.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     PAGE LOADER
+====================================================== -->
+
+<div id="loader">
+
+    <div class="loader-content">
+
+        <div class="loader-logo">
+
+            <i class="fa-solid fa-shield-heart"></i>
+
+        </div>
+
+        <h1>
+
+            ReliefMap
+
+        </h1>
+
+        <p>
+
+            Loading Disaster Intelligence...
+
+        </p>
+
+        <div class="loader-bar">
+
+            <div class="loader-progress"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     MAIN WRAPPER
+====================================================== -->
+
+<div class="app">
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-shield-heart"></i>
+
+        <div>
+
+            <h2>
+
+                ReliefMap
+
+            </h2>
+
+            <span>
+
+                Disaster Intelligence
+
+            </span>
+
+        </div>
+
+    </div>
+
+    <ul class="menu">
+
+        <li class="active">
+
+            <a href="#dashboard">
+
+                <i class="fa-solid fa-chart-pie"></i>
+
+                Dashboard
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#mapSection">
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                Live Map
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#analytics">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Analytics
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#aiCenter">
+
+                <i class="fa-solid fa-brain"></i>
+
+                AI Center
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#news">
+
+                <i class="fa-solid fa-newspaper"></i>
+
+                News
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#profile">
+
+                <i class="fa-solid fa-user"></i>
+
+                Profile
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#settings">
+
+                <i class="fa-solid fa-gear"></i>
+
+                Settings
+
+            </a>
+
+        </li>
+
+        <li>
+
+            <a href="#contact">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                Contact
+
+            </a>
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- =====================================================
+     MAIN CONTENT
+====================================================== -->
+
+<main class="content">
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="topbar">
+
+    <div class="search-box">
+
+        <i class="fa-solid fa-search"></i>
+
+        <input
+               type="text"
+               placeholder="Search hospitals, shelters, volunteers...">
+
+    </div>
+
+    <div class="topbar-right">
+
+        <div class="weather-mini">
+
+            <i class="fa-solid fa-cloud-sun"></i>
+
+            <span>
+
+                Chennai 31°C
+
+            </span>
+
+        </div>
+
+        <button class="notification-btn">
+
+            <i class="fa-solid fa-bell"></i>
+
+            <span class="badge">
+
+                4
+
+            </span>
+
+        </button>
+
+        <div class="profile-mini">
+
+            <img
+                 src="assets/profile/profile.jpg"
+                 alt="Profile">
+
+            <div>
+
+                <h4>
+
+                    Vigneshan S
+
+                </h4>
+
+                <small>
+
+                    Administrator
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section
+id="dashboard"
+class="hero">
+
+    <div class="hero-left">
+
+        <span class="live">
+
+            ● LIVE SYSTEM
+
+        </span>
+
+        <h1>
+
+            AI Powered Disaster Relief Coordination Platform
+
+        </h1>
+
+        <p>
+
+            Monitor disasters, coordinate volunteers,
+            manage relief centers,
+            predict resource shortages,
+            and save lives using AI.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn">
+
+                View Dashboard
+
+            </button>
+
+            <button class="secondary-btn">
+
+                Learn More
+
+            </button>
+
+        </div>
+
+    </div>
+
+   <div class="hero-right">
+
+    <img src="assets/images/hero.png"
+         alt="Hero">
+
+</div>
+
+</section>   <!-- CLOSE HERO HERE -->
+
+<!-- =====================================================
+     ALERT BAR
+====================================================== -->
+
+<section class="alert-bar">
+
+    <i class="fa-solid fa-triangle-exclamation"></i>
+
+    <marquee>
+
+        Heavy rainfall warning • 3 shelters opened •
+        AI predicts 92% flood probability in North Chennai •
+        Volunteers required immediately.
+
+    </marquee>
+
+</section>
+
+<!-- =====================================================
+     DASHBOARD CARDS
+====================================================== -->
+
+<section class="dashboard-cards">
+
+    <div class="card hospital">
+
+        <div>
+
+            <span>
+
+                Hospitals
+
+            </span>
+
+            <h2 id="hospitals">
+
+                ...
+
+            </h2>
+
+        </div>
+
+        <i class="fa-solid fa-hospital"></i>
+
+    </div>
+
+    <div class="card food">
+
+        <div>
+
+            <span>
+
+                Food Centers
+
+            </span>
+
+            <h2 id="food">
+
+                ...
+
+            </h2>
+
+        </div>
+
+        <i class="fa-solid fa-bowl-food"></i>
+
+    </div>
+
+    <div class="card shelter">
+
+        <div>
+
+            <span>
+
+                Shelters
+
+            </span>
+
+            <h2 id="shelters">
+
+                ...
+
+            </h2>
+
+        </div>
+
+        <i class="fa-solid fa-house"></i>
+
+    </div>
+
+    <div class="card volunteer">
+
+        <div>
+
+            <span>
+
+                Volunteers
+
+            </span>
+
+            <h2 id="volunteers">
+
+                ...
+
+            </h2>
+
+        </div>
+
+        <i class="fa-solid fa-users"></i>
+
+    </div>
+
+</section>
+<!-- =====================================================
+     MAP & WEATHER SECTION
+====================================================== -->
+
+<section id="mapSection" class="map-grid">
+
+    <!-- =========================
+         LIVE MAP
+    ========================== -->
+
+    <div class="map-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-map-location-dot"></i>
+
+                Live Relief Map
+
+            </h2>
+
+            <button class="primary-btn" id="refreshMap">
+
+                Refresh
+
+            </button>
+
+        </div>
+
+        <div id="mapContainer"></div>
+
+    </div>
+
+    <!-- =========================
+         WEATHER
+    ========================== -->
+
+    <div class="weather-card">
+
+        <div class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-cloud-sun-rain"></i>
+
+                Weather
+
+            </h2>
+
+        </div>
+
+        <div class="weather-main">
+
+            <div class="temperature">
+
+                31°
+
+            </div>
+
+            <div>
+
+                <h3>
+
+                    Chennai
+
+                </h3>
+
+                <p>
+
+                    Heavy Rain
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="weather-stats">
+
+            <div>
+
+                <span>Humidity</span>
+
+                <strong>89%</strong>
+
+            </div>
+
+            <div>
+
+                <span>Wind</span>
+
+                <strong>16 km/h</strong>
+
+            </div>
+
+            <div>
+
+                <span>Visibility</span>
+
+                <strong>5 km</strong>
+
+            </div>
+
+            <div>
+
+                <span>Rain</span>
+
+                <strong>92%</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     AI COMMAND CENTER
+====================================================== -->
+
+<section id="aiCenter" class="ai-center">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-brain"></i>
+
+            AI Command Center
+
+        </h2>
+
+        <span class="ai-status">
+
+            ● AI ONLINE
+
+        </span>
+
+    </div>
+
+    <div class="ai-grid">
+
+        <div class="ai-card">
+
+            <i class="fa-solid fa-water"></i>
+
+            <h3>
+
+                Flood Prediction
+
+            </h3>
+
+            <h1>
+
+                92%
+
+            </h1>
+
+            <p>
+
+                High flood probability within
+                the next 6 hours.
+
+            </p>
+
+        </div>
+
+        <div class="ai-card">
+
+            <i class="fa-solid fa-users"></i>
+
+            <h3>
+
+                Volunteers Needed
+
+            </h3>
+
+            <h1>
+
+                128
+
+            </h1>
+
+            <p>
+
+                Deploy additional volunteers
+                to North Chennai.
+
+            </p>
+
+        </div>
+
+        <div class="ai-card">
+
+            <i class="fa-solid fa-box"></i>
+
+            <h3>
+
+                Food Requirement
+
+            </h3>
+
+            <h1>
+
+                4,250
+
+            </h1>
+
+            <p>
+
+                Food packets predicted
+                for today.
+
+            </p>
+
+        </div>
+
+        <div class="ai-card">
+
+            <i class="fa-solid fa-house"></i>
+
+            <h3>
+
+                Shelter Capacity
+
+            </h3>
+
+            <h1>
+
+                82%
+
+            </h1>
+
+            <p>
+
+                Most shelters nearing
+                maximum occupancy.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     RESOURCE OVERVIEW
+====================================================== -->
+
+<section class="resources">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-boxes-stacked"></i>
+
+            Resource Availability
+
+        </h2>
+
+    </div>
+
+    <div class="resource-grid">
+
+        <div class="resource-card">
+
+            <h3>
+
+                Food
+
+            </h3>
+
+            <div class="progress">
+
+                <div class="progress-fill" style="width:84%"></div>
+
+            </div>
+
+            <span>
+
+                84%
+
+            </span>
+
+        </div>
+
+        <div class="resource-card">
+
+            <h3>
+
+                Water
+
+            </h3>
+
+            <div class="progress">
+
+                <div class="progress-fill" style="width:91%"></div>
+
+            </div>
+
+            <span>
+
+                91%
+
+            </span>
+
+        </div>
+
+        <div class="resource-card">
+
+            <h3>
+
+                Medicine
+
+            </h3>
+
+            <div class="progress">
+
+                <div class="progress-fill" style="width:67%"></div>
+
+            </div>
+
+            <span>
+
+                67%
+
+            </span>
+
+        </div>
+
+        <div class="resource-card">
+
+            <h3>
+
+                Fuel
+
+            </h3>
+
+            <div class="progress">
+
+                <div class="progress-fill" style="width:53%"></div>
+
+            </div>
+
+            <span>
+
+                53%
+
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     ANALYTICS
+====================================================== -->
+
+<section id="analytics" class="analytics">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-chart-column"></i>
+
+            Disaster Analytics
+
+        </h2>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <h3>
+
+                Relief Center Distribution
+
+            </h3>
+
+            <canvas id="distributionChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h3>
+
+                Daily Rescue Trend
+
+            </h3>
+
+            <canvas id="trendChart"></canvas>
+
+        </div>
+
+    </div>
+
+    <div class="chart-grid">
+
+        <div class="chart-card">
+
+            <h3>
+
+                Resource Usage
+
+            </h3>
+
+            <canvas id="resourceChart"></canvas>
+
+        </div>
+
+        <div class="chart-card">
+
+            <h3>
+
+                Volunteer Allocation
+
+            </h3>
+
+            <canvas id="volunteerChart"></canvas>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =====================================================
+     NEWS SECTION
+====================================================== -->
+
+<section id="news" class="news-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-newspaper"></i>
+
+            Latest Disaster Updates
+
+        </h2>
+
+        <a href="#" class="view-all">
+
+            View All
+
+        </a>
+
+    </div>
+
+    <div class="news-grid">
+
+        <article class="news-card">
+
+            <img src="assets/images/news1.jpg" alt="News">
+
+            <div class="news-content">
+
+                <span class="news-tag flood">
+
+                    FLOOD
+
+                </span>
+
+                <h3>
+
+                    Heavy Rainfall Hits North Chennai
+
+                </h3>
+
+                <p>
+
+                    Relief teams have deployed rescue boats
+                    and opened three additional shelters.
+
+                </p>
+
+                <small>
+
+                    5 Minutes Ago
+
+                </small>
+
+            </div>
+
+        </article>
+
+        <article class="news-card">
+
+            <img src="assets/images/news2.jpg" alt="News">
+
+            <div class="news-content">
+
+                <span class="news-tag medical">
+
+                    MEDICAL
+
+                </span>
+
+                <h3>
+
+                    Mobile Medical Camp Started
+
+                </h3>
+
+                <p>
+
+                    Doctors are providing free treatment
+                    in affected villages.
+
+                </p>
+
+                <small>
+
+                    20 Minutes Ago
+
+                </small>
+
+            </div>
+
+        </article>
+
+        <article class="news-card">
+
+            <img src="assets/images/news3.jpg" alt="News">
+
+            <div class="news-content">
+
+                <span class="news-tag food">
+
+                    FOOD
+
+                </span>
+
+                <h3>
+
+                    6000 Food Packets Distributed
+
+                </h3>
+
+                <p>
+
+                    Volunteers completed distribution
+                    across five districts.
+
+                </p>
+
+                <small>
+
+                    1 Hour Ago
+
+                </small>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     TIMELINE
+====================================================== -->
+
+<section class="timeline-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            Emergency Timeline
+
+        </h2>
+
+    </div>
+
+    <div class="timeline">
+
+        <div class="timeline-item completed">
+
+            <span class="time">
+
+                08:15 AM
+
+            </span>
+
+            <h4>
+
+                Ambulances Dispatched
+
+            </h4>
+
+            <p>
+
+                Medical teams reached flood zones.
+
+            </p>
+
+        </div>
+
+        <div class="timeline-item active">
+
+            <span class="time">
+
+                09:00 AM
+
+            </span>
+
+            <h4>
+
+                Shelter Opened
+
+            </h4>
+
+            <p>
+
+                New shelter activated at Anna University.
+
+            </p>
+
+        </div>
+
+        <div class="timeline-item warning">
+
+            <span class="time">
+
+                10:40 AM
+
+            </span>
+
+            <h4>
+
+                Flood Warning
+
+            </h4>
+
+            <p>
+
+                AI predicts rising water level.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     LIVE ACTIVITY
+====================================================== -->
+
+<section class="activity-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-wave-square"></i>
+
+            Live Activity Feed
+
+        </h2>
+
+    </div>
+
+    <ul class="activity-list">
+
+        <li>
+
+            <i class="fa-solid fa-truck-medical"></i>
+
+            Ambulance reached Adyar.
+
+            <span>
+
+                2 min ago
+
+            </span>
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-house"></i>
+
+            Shelter capacity updated.
+
+            <span>
+
+                8 min ago
+
+            </span>
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-users"></i>
+
+            24 new volunteers registered.
+
+            <span>
+
+                16 min ago
+
+            </span>
+
+        </li>
+
+        <li>
+
+            <i class="fa-solid fa-box-open"></i>
+
+            Food warehouse synchronized.
+
+            <span>
+
+                25 min ago
+
+            </span>
+
+        </li>
+
+    </ul>
+
+</section>
+
+<!-- =====================================================
+     NOTIFICATIONS
+====================================================== -->
+
+<section class="notification-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-bell"></i>
+
+            Notifications
+
+        </h2>
+
+    </div>
+
+    <div class="notification-grid">
+
+        <div class="notification-card critical">
+
+            <h4>
+
+                🚨 Critical Alert
+
+            </h4>
+
+            <p>
+
+                Shelter No.12 reached maximum capacity.
+
+            </p>
+
+        </div>
+
+        <div class="notification-card warning">
+
+            <h4>
+
+                🌧 Weather Warning
+
+            </h4>
+
+            <p>
+
+                Heavy rainfall expected in 2 hours.
+
+            </p>
+
+        </div>
+
+        <div class="notification-card success">
+
+            <h4>
+
+                ✅ Delivery Completed
+
+            </h4>
+
+            <p>
+
+                Medical supplies delivered successfully.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     TOP VOLUNTEERS
+====================================================== -->
+
+<section class="leaderboard">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-award"></i>
+
+            Top Volunteers
+
+        </h2>
+
+    </div>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Rank</th>
+
+                <th>Name</th>
+
+                <th>District</th>
+
+                <th>Missions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            <tr>
+
+                <td>🥇</td>
+
+                <td>Arun Kumar</td>
+
+                <td>Chennai</td>
+
+                <td>48</td>
+
+            </tr>
+
+            <tr>
+
+                <td>🥈</td>
+
+                <td>Priya S</td>
+
+                <td>Tambaram</td>
+
+                <td>44</td>
+
+            </tr>
+
+            <tr>
+
+                <td>🥉</td>
+
+                <td>Karthik R</td>
+
+                <td>Velachery</td>
+
+                <td>41</td>
+
+            </tr>
+
+            <tr>
+
+                <td>4</td>
+
+                <td>Sneha P</td>
+
+                <td>Adyar</td>
+
+                <td>36</td>
+
+            </tr>
+
+            <tr>
+
+                <td>5</td>
+
+                <td>Rahul M</td>
+
+                <td>Anna Nagar</td>
+
+                <td>33</td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+</section>
+<!-- =====================================================
+PROFILE
+====================================================== -->
+
+<section id="profile" class="profile-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-user"></i>
+
+            Administrator Profile
+
+        </h2>
+
+    </div>
+
+    <div class="profile-container">
+
+        <div class="profile-card">
+
+            <img
+                src="assets/profile/profile.jpg"
+                alt="Profile">
+
+            <h2>
+
+                Vigneshan S
+
+            </h2>
+
+            <p>
+
+                Full Stack Developer
+
+            </p>
+
+            <span>
+
+                System Administrator
+
+            </span>
+
+        </div>
+
+        <div class="profile-stats">
+
+            <div class="stat">
+
+                <h1>186</h1>
+
+                <p>Missions</p>
+
+            </div>
+
+            <div class="stat">
+
+                <h1>2450</h1>
+
+                <p>Volunteers</p>
+
+            </div>
+
+            <div class="stat">
+
+                <h1>98%</h1>
+
+                <p>Success</p>
+
+            </div>
+
+            <div class="stat">
+
+                <h1>72</h1>
+
+                <p>Centers</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+SETTINGS
+====================================================== -->
+
+<section id="settings" class="settings-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            <i class="fa-solid fa-gear"></i>
+
+            Settings
+
+        </h2>
+
+    </div>
+
+    <div class="settings-grid">
+
+        <div class="setting-card">
+
+            <label>Theme</label>
+
+            <select id="theme">
+
+                <option>Dark</option>
+
+                <option>Light</option>
+
+                <option>Neon</option>
+
+            </select>
+
+        </div>
+
+        <div class="setting-card">
+
+            <label>Language</label>
+
+            <select id="language">
+
+                <option>English</option>
+
+                <option>தமிழ்</option>
+
+            </select>
+
+        </div>
+
+        <div class="setting-card">
+
+            <label>
+
+                Notifications
+
+            </label>
+
+            <input
+                id="notifications"
+                type="checkbox"
+                checked>
+
+        </div>
+
+        <button
+            id="saveSettings"
+            class="primary-btn">
+
+            Save Settings
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+ABOUT
+====================================================== -->
+
+<section id="about" class="about-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            About ReliefMap
+
+        </h2>
+
+    </div>
+
+    <p>
+
+        ReliefMap is an AI-powered disaster management
+        platform designed to coordinate hospitals,
+        volunteers, shelters, NGOs and government
+        agencies using live maps, analytics and AI.
+
+    </p>
+
+</section>
+
+<!-- =====================================================
+TEAM
+====================================================== -->
+
+<section class="team-section">
+
+    <div class="section-header">
+
+        <h2>
+
+            Development Team
+
+        </h2>
+
+    </div>
+
+    <div class="team-grid">
+
+        <div class="team-card">
+
+            <img src="assets/team/vignesh.jpg">
+
+            <h3>
+
+                Vigneshan S
+
+            </h3>
+
+            <p>
+
+                Full Stack Developer
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+CONTACT
+====================================================== -->
+
+<section id="contact">
+
+    <div class="section-header">
+
+        <h2>
+
+            Contact Us
+
+        </h2>
+
+    </div>
+
+    <form id="contactForm">
+
+        <input
+            id="contactName"
+            type="text"
+            placeholder="Name">
+
+        <input
+            id="contactEmail"
+            type="email"
+            placeholder="Email">
+
+        <textarea
+            id="contactMessage"
+            placeholder="Message"></textarea>
+
+        <button
+            class="primary-btn"
+            type="submit">
+
+            Send Message
+
+        </button>
+
+    </form>
+
+</section>
+
+<!-- =====================================================
+FOOTER
+====================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <h2>
+
+            ReliefMap
+
+        </h2>
+
+        <p>
+
+            AI Powered Disaster Relief Coordination Platform
+
+        </p>
+
+        <div class="social">
+
+            <i class="fab fa-github"></i>
+
+            <i class="fab fa-linkedin"></i>
+
+            <i class="fab fa-twitter"></i>
+
+        </div>
+
+        <small>
+
+            © 2026 ReliefMap
+            Created by Vigneshan S
+
+        </small>
+
+    </div>
+
+</footer>
+
+<!-- =====================================================
+FLOATING BUTTON
+====================================================== -->
+
+<button
+id="scrollTopBtn">
+
+    ↑
+
+</button>
+
+<!-- =====================================================
+MODALS
+====================================================== -->
+
+<div id="toastContainer"></div>
+
+
+<!-- =====================================================
+SCRIPTS
+====================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="js/config.js"></script>
+
+<script defer src="js/api.js"></script>
+
+<script src="js/utils.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+<script src="js/map.js"></script>
+
+<script src="js/charts.js"></script>
+
+<script src="js/news.js"></script>
+
+<script src="js/ai.js"></script>
+
+<script src="js/profile.js"></script>
+
+<script src="js/settings.js"></script>
+
+<script src="js/contact.js"></script>
+
+<script src="js/script.js"></script>
+
+</main>
+
+</div>
+
+</body>
+
+</html>
+/* ===== FIX TOPBAR ===== */
+
+.topbar{
+
+    position:fixed !important;
+
+    top:20px !important;
+
+    left:300px !important;
+
+    right:30px !important;
+
+    width:calc(100% - 330px) !important;
+
+    height:80px !important;
+
+    display:flex !important;
+
+    justify-content:space-between !important;
+
+    align-items:center !important;
+
+    background:#ffffff !important;
+
+    z-index:99999 !important;
+
+    box-sizing:border-box !important;
+
+}

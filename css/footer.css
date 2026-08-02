@@ -1,0 +1,373 @@
+/* ===========================================================
+   ReliefMap
+   Footer Stylesheet
+   Author : Vigneshan S
+=========================================================== */
+
+/* ===========================================================
+   FOOTER
+=========================================================== */
+
+footer{
+
+    margin-top:80px;
+
+    background:#0f172a;
+
+    color:#ffffff;
+
+    padding:60px 40px 25px;
+
+}
+
+/* ===========================================================
+   FOOTER CONTAINER
+=========================================================== */
+
+.footer-container{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr 1fr 1fr;
+
+    gap:40px;
+
+    margin-bottom:40px;
+
+}
+
+/* ===========================================================
+   FOOTER BRAND
+=========================================================== */
+
+.footer-brand h2{
+
+    color:#ffffff;
+
+    margin-bottom:18px;
+
+}
+
+.footer-brand p{
+
+    color:#cbd5e1;
+
+    line-height:1.8;
+
+    margin-bottom:25px;
+
+}
+
+/* ===========================================================
+   SOCIAL ICONS
+=========================================================== */
+
+.social-icons{
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+.social-icons a{
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.08);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:white;
+
+    transition:.35s;
+
+}
+
+.social-icons a:hover{
+
+    background:var(--primary);
+
+    transform:translateY(-6px);
+
+}
+
+/* ===========================================================
+   FOOTER TITLES
+=========================================================== */
+
+.footer-links h3,
+
+.footer-contact h3,
+
+.footer-newsletter h3{
+
+    margin-bottom:20px;
+
+    color:white;
+
+}
+
+/* ===========================================================
+   LINKS
+=========================================================== */
+
+.footer-links ul{
+
+    list-style:none;
+
+}
+
+.footer-links li{
+
+    margin-bottom:12px;
+
+}
+
+.footer-links a{
+
+    color:#cbd5e1;
+
+    transition:.3s;
+
+}
+
+.footer-links a:hover{
+
+    color:white;
+
+    padding-left:6px;
+
+}
+
+/* ===========================================================
+   CONTACT
+=========================================================== */
+
+.footer-contact p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-bottom:15px;
+
+    color:#cbd5e1;
+
+}
+
+.footer-contact i{
+
+    color:#38bdf8;
+
+}
+
+/* ===========================================================
+   NEWSLETTER
+=========================================================== */
+
+.newsletter-form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+.newsletter-form input{
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:12px;
+
+    outline:none;
+
+}
+
+.newsletter-form button{
+
+    padding:14px;
+
+    background:var(--primary);
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.newsletter-form button:hover{
+
+    background:var(--primary-dark);
+
+}
+
+/* ===========================================================
+   DIVIDER
+=========================================================== */
+
+.footer-divider{
+
+    height:1px;
+
+    background:rgba(255,255,255,.08);
+
+    margin:35px 0;
+
+}
+
+/* ===========================================================
+   FOOTER BOTTOM
+=========================================================== */
+
+.footer-bottom{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:15px;
+
+}
+
+.footer-bottom p{
+
+    color:#94a3b8;
+
+}
+
+.footer-bottom-links{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+.footer-bottom-links a{
+
+    color:#94a3b8;
+
+    transition:.3s;
+
+}
+
+.footer-bottom-links a:hover{
+
+    color:white;
+
+}
+
+/* ===========================================================
+   BACK TO TOP
+=========================================================== */
+
+.back-to-top{
+
+    position:fixed;
+
+    right:25px;
+
+    bottom:25px;
+
+    width:55px;
+
+    height:55px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+    z-index:999;
+
+}
+
+.back-to-top:hover{
+
+    background:var(--primary-dark);
+
+    transform:translateY(-8px);
+
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:1200px){
+
+    .footer-container{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .footer-container{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .footer-bottom{
+
+        flex-direction:column;
+
+        text-align:center;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    footer{
+
+        padding:40px 20px 20px;
+
+    }
+
+}
