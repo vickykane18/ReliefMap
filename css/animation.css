@@ -1,0 +1,184 @@
+/* ===========================================================
+   ReliefMap
+   Animation Stylesheet
+   Author : Vigneshan S
+   Year : 2026
+
+   Entrance animations, hover effects, keyframes and
+   reduced-motion support used across login, profile &
+   dashboard pages.
+=========================================================== */
+
+/* ===========================================================
+   ENTRANCE ANIMATIONS
+=========================================================== */
+
+.animate-fade-left,
+.animate-fade-right,
+.animate-fade-up,
+.animate-fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: rmFadeUp 0.7s ease-out forwards;
+}
+
+.animate-fade-left {
+    transform: translateX(-28px);
+    animation-name: rmFadeLeft;
+}
+
+.animate-fade-right {
+    transform: translateX(28px);
+    animation-name: rmFadeRight;
+}
+
+.animate-fade-in {
+    opacity: 0;
+    transform: none;
+    animation-name: rmFadeIn;
+}
+
+/* Stagger helpers */
+.stagger-1 { animation-delay: 0.10s; }
+.stagger-2 { animation-delay: 0.20s; }
+.stagger-3 { animation-delay: 0.30s; }
+.stagger-4 { animation-delay: 0.40s; }
+.stagger-5 { animation-delay: 0.50s; }
+
+/* ===========================================================
+   KEYFRAMES
+=========================================================== */
+
+@keyframes rmFadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rmFadeLeft {
+    from { opacity: 0; transform: translateX(-28px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes rmFadeRight {
+    from { opacity: 0; transform: translateX(28px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes rmFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ===========================================================
+   CONTROLLED OVERRIDES (mark as visible when revealed)
+=========================================================== */
+
+.animate-fade-up.visible,
+.animate-fade-left.visible,
+.animate-fade-right.visible,
+.animate-fade-in.visible {
+    opacity: 1;
+    transform: none;
+    animation: none;
+}
+
+/* ===========================================================
+   CARD HOVER MICRO-INTERACTIONS
+=========================================================== */
+
+.card,
+.chart-card,
+.profile-card,
+.news-card,
+.resource-card,
+.ai-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover,
+.chart-card:hover,
+.profile-card:hover,
+.news-card:hover,
+.resource-card:hover,
+.ai-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ===========================================================
+   LOGO FLOAT (login brand panel)
+=========================================================== */
+
+.brand-logo {
+    animation: rmFloat 3.2s ease-in-out infinite;
+}
+
+@keyframes rmFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+}
+
+/* ===========================================================
+   CONTINUOUS PULSE (status dots, live badges)
+=========================================================== */
+
+.pulse-dot,
+.live-dot,
+.status-dot.live {
+    animation: rmPulse 1.6s ease-in-out infinite;
+}
+
+@keyframes rmPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.6; transform: scale(1.15); }
+}
+
+/* ===========================================================
+   SHIMMER (loading skeletons / progress)
+=========================================================== */
+
+.shimmer {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: rmShimmer 1.4s infinite;
+}
+
+@keyframes rmShimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+/* ===========================================================
+   REDUCED MOTION — accessibility
+=========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .animate-fade-left,
+    .animate-fade-right,
+    .animate-fade-up,
+    .animate-fade-in,
+    .brand-logo,
+    .pulse-dot,
+    .live-dot,
+    .status-dot.live,
+    .shimmer {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .card,
+    .chart-card,
+    .profile-card,
+    .news-card,
+    .resource-card,
+    .ai-card {
+        transition: none !important;
+    }
+}

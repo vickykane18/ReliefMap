@@ -27,7 +27,7 @@ const saveButton = document.getElementById("saveSettings");
 
 const DEFAULT_SETTINGS = {
 
-    theme: "light",
+    theme: "dark",
 
     language: "English",
 
@@ -73,15 +73,15 @@ function loadSettings(){
 
 async function saveSettings(){
 
-    const settings = {
+const settings = {
 
-        theme: themeSelect ? themeSelect.value : "light",
+        theme: themeSelect ? themeSelect.value : DEFAULT_SETTINGS.theme,
 
-        language: languageSelect ? languageSelect.value : "English",
+        language: languageSelect ? languageSelect.value : DEFAULT_SETTINGS.language,
 
         notifications: notificationToggle ?
 
-            notificationToggle.checked : true
+            notificationToggle.checked : DEFAULT_SETTINGS.notifications
 
     };
 
@@ -93,11 +93,7 @@ async function saveSettings(){
 
     );
 
-    setTheme(
-
-        settings.theme
-
-    );
+    setTheme(settings.theme);
 
     try{
 
@@ -181,17 +177,13 @@ function resetSettings(){
 
     }
 
+    setTheme(DEFAULT_SETTINGS.theme);
+
     saveStorage(
 
         STORAGE.SETTINGS,
 
         DEFAULT_SETTINGS
-
-    );
-
-    setTheme(
-
-        DEFAULT_SETTINGS.theme
 
     );
 
@@ -202,6 +194,40 @@ function resetSettings(){
         "info"
 
     );
+
+}
+
+/* ===========================================================
+   THEME BOX INTERACTION
+=========================================================== */
+
+function setupThemeBoxes(){
+
+    const boxes = document.querySelectorAll(".theme-box");
+
+    if(!boxes.length) return;
+
+    boxes.forEach(box=>{
+
+        box.addEventListener("click",()=>{
+
+            const theme = box.dataset.theme;
+
+            if(themeSelect){
+
+                themeSelect.value = theme;
+
+            }
+
+            setTheme(theme);
+
+            boxes.forEach(b=>b.classList.remove("active"));
+
+            box.classList.add("active");
+
+        });
+
+    });
 
 }
 
@@ -217,15 +243,49 @@ if(themeSelect){
 
         ()=>{
 
-            setTheme(
+            setTheme(themeSelect.value);
 
-                themeSelect.value
+            document.querySelectorAll(".theme-box").forEach(b=>{
 
-            );
+                b.classList.toggle("active", b.dataset.theme === themeSelect.value);
+
+            });
 
         }
 
     );
+
+}
+
+/* ===========================================================
+   LANGUAGE BUTTON INTERACTION
+=========================================================== */
+
+function setupLanguageButtons(){
+
+    const buttons = document.querySelectorAll(".language-btn");
+
+    if(!buttons.length) return;
+
+    buttons.forEach(btn=>{
+
+        btn.addEventListener("click",()=>{
+
+            const lang = btn.dataset.lang;
+
+            if(languageSelect){
+
+                languageSelect.value = lang;
+
+            }
+
+            buttons.forEach(b=>b.classList.remove("active"));
+
+            btn.classList.add("active");
+
+        });
+
+    });
 
 }
 
@@ -283,7 +343,11 @@ document.addEventListener(
 
     ()=>{
 
-        loadSettings();
+loadSettings();
+
+        setupThemeBoxes();
+
+        setupLanguageButtons();
 
     }
 

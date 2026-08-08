@@ -1,808 +1,273 @@
 /* ===========================================================
    ReliefMap
-   Dashboard Stylesheet
+   Dashboard Controller
    Author : Vigneshan S
+   Year : 2026
 =========================================================== */
+
+"use strict";
 
 /* ===========================================================
-   HERO SECTION
+   DASHBOARD ELEMENTS
 =========================================================== */
 
-.hero{
+const hospitalElement = document.getElementById("hospitals");
+const foodElement = document.getElementById("food");
+const shelterElement = document.getElementById("shelters");
+const volunteerElement = document.getElementById("volunteers");
 
-    display:grid;
+/* ===========================================================
+   DEMO DATA
+=========================================================== */
 
-    grid-template-columns:1.2fr 1fr;
+const DEMO_STATS = {
 
-    align-items:center;
+    Hospitals: 12,
 
-    gap:60px;
+    "Food Centers": 8,
 
-    margin-bottom:50px;
+    Shelters: 6,
 
-}
+    Volunteers: 315
 
-.hero-left{
+};
 
-    animation:slideLeft .8s ease;
+/* ===========================================================
+   ANIMATE COUNTER
+=========================================================== */
 
-}
+function animateCounter(element, target) {
 
-.hero-left h1{
+    if (!element) return;
 
-    font-size:3.5rem;
+    let current = 0;
 
-    font-weight:700;
+    const increment = Math.max(1, Math.ceil(target / 80));
 
-    line-height:1.2;
+    const timer = setInterval(() => {
 
-    margin:20px 0;
+        current += increment;
 
-    color:var(--text);
+        if (current >= target) {
 
-}
+            current = target;
 
-.hero-left p{
+            clearInterval(timer);
 
-    max-width:650px;
+        }
 
-    color:var(--text-light);
+        element.textContent = formatNumber(current);
 
-    margin-bottom:35px;
-
-    line-height:1.9;
-
-}
-
-.hero-buttons{
-
-    display:flex;
-
-    gap:18px;
-
-    flex-wrap:wrap;
-
-}
-
-.hero-right{
-
-    display:flex;
-
-    justify-content:center;
-
-    animation:slideRight .8s ease;
-
-}
-
-.hero-right img{
-
-    width:100%;
-
-    max-width:520px;
+    }, 20);
 
 }
 
 /* ===========================================================
-   LIVE BADGE
+   UPDATE DASHBOARD
 =========================================================== */
 
-.live{
+function updateDashboard(stats) {
 
-    display:inline-flex;
+    animateCounter(
+        hospitalElement,
+        stats.Hospitals || 0
+    );
 
-    align-items:center;
+    animateCounter(
+        foodElement,
+        stats["Food Centers"] || 0
+    );
 
-    gap:10px;
+    animateCounter(
+        shelterElement,
+        stats.Shelters || 0
+    );
 
-    background:#dcfce7;
+    animateCounter(
+        volunteerElement,
+        stats.Volunteers || 0
+    );
 
-    color:#16a34a;
-
-    padding:10px 18px;
-
-    border-radius:50px;
-
-    font-size:.9rem;
-
-    font-weight:600;
+    updateDashboardTime();
 
 }
 
 /* ===========================================================
-   DASHBOARD
+   LOAD DASHBOARD
 =========================================================== */
 
-.dashboard-cards{
+async function loadDashboard() {
 
-    display:grid;
+    showLoader();
 
-    grid-template-columns:repeat(4,1fr);
+    try {
 
-    gap:25px;
+        if (
+            typeof API !== "undefined" &&
+            typeof API.getStats === "function"
+        ) {
 
-    margin:50px 0;
+            const response = await API.getStats();
+
+            if (response && response.data) {
+
+                updateDashboard(response.data);
+
+            } else {
+
+                updateDashboard(DEMO_STATS);
+
+            }
+
+        } else {
+
+            updateDashboard(DEMO_STATS);
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.warn("Backend unavailable. Loading demo data.");
+
+        updateDashboard(DEMO_STATS);
+
+    }
+
+    finally {
+
+        hideLoader();
+
+    }
 
 }
 
 /* ===========================================================
-   CARD
+   LAST UPDATED
 =========================================================== */
 
-.dashboard-cards .card{
+function updateDashboardTime() {
 
-    background:var(--card);
+    const element = document.getElementById("lastUpdated");
 
-    border-radius:20px;
+    if (!element) return;
 
-    padding:28px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    box-shadow:var(--shadow);
-
-    transition:.35s;
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.dashboard-cards .card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:var(--shadow-hover);
+    element.textContent = formatTime(new Date());
 
 }
 
 /* ===========================================================
-   ICON
+   REFRESH BUTTON
 =========================================================== */
 
-.dashboard-cards i{
+const dashboardRefreshButton =
+document.getElementById("refreshMap");
 
-    font-size:48px;
+if (dashboardRefreshButton) {
 
-    opacity:.18;
+    dashboardRefreshButton.addEventListener(
 
-}
+        "click",
 
-.dashboard-cards h2{
-
-    margin-top:12px;
-
-    font-size:2.4rem;
-
-}
-
-.dashboard-cards span{
-
-    color:var(--text-light);
-
-    font-size:.95rem;
-
-}
-
-/* ===========================================================
-   COLORS
-=========================================================== */
-
-.hospital{
-
-    border-top:5px solid #2563eb;
-
-}
-
-.food{
-
-    border-top:5px solid #f59e0b;
-
-}
-
-.shelter{
-
-    border-top:5px solid #16a34a;
-
-}
-
-.volunteer{
-
-    border-top:5px solid #7c3aed;
-
-}
-
-/* ===========================================================
-   ALERT BAR
-=========================================================== */
-
-.alert-bar{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:18px;
-
-    background:#fee2e2;
-
-    color:#b91c1c;
-
-    padding:18px 25px;
-
-    border-radius:18px;
-
-    font-weight:600;
-
-    margin-top:35px;
-
-}
-
-.alert-bar i{
-
-    font-size:24px;
-
-}
-
-/* ===========================================================
-   RESOURCE GRID
-=========================================================== */
-
-.resource-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:25px;
-
-    margin-top:30px;
-
-}
-
-.resource-card{
-
-    background:var(--card);
-
-    padding:25px;
-
-    border-radius:18px;
-
-    box-shadow:var(--shadow);
-
-}
-
-.resource-card h3{
-
-    margin-bottom:15px;
-
-}
-
-.resource-card span{
-
-    color:var(--primary);
-
-    font-weight:700;
-
-}
-
-/* ===========================================================
-   PROGRESS
-=========================================================== */
-
-.progress{
-
-    width:100%;
-
-    height:12px;
-
-    border-radius:50px;
-
-    background:#e5e7eb;
-
-    overflow:hidden;
-
-}
-
-.progress-fill{
-
-    height:100%;
-
-    border-radius:50px;
-
-    background:linear-gradient(
-
-        90deg,
-
-        #2563eb,
-
-        #38bdf8
+        loadDashboard
 
     );
 
 }
 
 /* ===========================================================
-   DASHBOARD ANIMATIONS
+   CARD HOVER
 =========================================================== */
 
-@keyframes slideLeft{
+document.querySelectorAll(".dashboard-cards .card")
 
-    from{
+.forEach(card => {
 
-        opacity:0;
+    card.addEventListener("mouseenter", () => {
 
-        transform:translateX(-50px);
+        card.style.transform =
+        "translateY(-10px) scale(1.03)";
 
-    }
+    });
 
-    to{
+    card.addEventListener("mouseleave", () => {
 
-        opacity:1;
+        card.style.transform = "";
 
-        transform:translateX(0);
+    });
 
-    }
-
-}
-
-@keyframes slideRight{
-
-    from{
-
-        opacity:0;
-
-        transform:translateX(50px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateX(0);
-
-    }
-
-}
-/* ===========================================================
-   DASHBOARD STATISTICS
-=========================================================== */
-
-.stats-grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(4,1fr);
-
-    gap:25px;
-
-    margin:40px 0;
-
-}
-
-.stat-widget{
-
-    background:var(--card);
-
-    border-radius:20px;
-
-    padding:30px;
-
-    text-align:center;
-
-    box-shadow:var(--shadow);
-
-    transition:.35s;
-
-}
-
-.stat-widget:hover{
-
-    transform:translateY(-8px);
-
-    box-shadow:var(--shadow-hover);
-
-}
-
-.stat-widget h2{
-
-    font-size:2.8rem;
-
-    margin:15px 0;
-
-    color:var(--primary);
-
-}
-
-.stat-widget span{
-
-    color:var(--text-light);
-
-    font-size:.9rem;
-
-}
-
-.stat-widget i{
-
-    font-size:42px;
-
-    color:var(--primary);
-
-}
+});
 
 /* ===========================================================
    QUICK ACTIONS
 =========================================================== */
 
-.quick-actions-grid{
+document.querySelectorAll(".action-card")
 
-    display:grid;
+.forEach(card => {
 
-    grid-template-columns:repeat(4,1fr);
+    card.addEventListener("click", () => {
 
-    gap:20px;
+        const title =
+        card.querySelector("h3")?.textContent ||
+        "Action";
 
-    margin:40px 0;
+        showToast(
 
-}
+            `${title} selected`,
 
-.action-card{
+            "info"
 
-    background:var(--card);
+        );
 
-    border-radius:18px;
+    });
 
-    padding:30px;
-
-    text-align:center;
-
-    cursor:pointer;
-
-    transition:.35s;
-
-    box-shadow:var(--shadow);
-
-}
-
-.action-card:hover{
-
-    background:var(--primary);
-
-    color:white;
-
-    transform:translateY(-10px);
-
-}
-
-.action-card:hover p{
-
-    color:white;
-
-}
-
-.action-card i{
-
-    font-size:38px;
-
-    margin-bottom:20px;
-
-}
-
-.action-card h3{
-
-    margin-bottom:10px;
-
-}
+});
 
 /* ===========================================================
-   DASHBOARD WIDGETS
+   AUTO REFRESH
 =========================================================== */
 
-.widget-grid{
+function startDashboardRefresh() {
 
-    display:grid;
+    if (
+        typeof CONFIG !== "undefined" &&
+        CONFIG.AUTO_REFRESH
+    ) {
 
-    grid-template-columns:2fr 1fr;
+        setInterval(
 
-    gap:25px;
+            loadDashboard,
 
-    margin:40px 0;
+            CONFIG.REFRESH_INTERVAL
 
-}
-
-.widget{
-
-    background:var(--card);
-
-    border-radius:20px;
-
-    padding:25px;
-
-    box-shadow:var(--shadow);
-
-}
-
-.widget-title{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:20px;
-
-}
-
-/* ===========================================================
-   KPI TREND
-=========================================================== */
-
-.kpi-trend{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:8px;
-
-    color:var(--success);
-
-    font-size:.9rem;
-
-    font-weight:600;
-
-}
-
-.kpi-down{
-
-    color:var(--danger);
-
-}
-
-/* ===========================================================
-   MINI CARDS
-=========================================================== */
-
-.mini-card{
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:18px;
-
-    margin-bottom:15px;
-
-    border-radius:16px;
-
-    background:#f8fafc;
-
-}
-
-.mini-card:last-child{
-
-    margin-bottom:0;
-
-}
-
-.mini-card h4{
-
-    margin-bottom:6px;
-
-}
-
-.mini-card span{
-
-    color:var(--text-light);
-
-}
-
-/* ===========================================================
-   FLOATING ICON
-=========================================================== */
-
-.floating-icon{
-
-    animation:floatIcon 4s ease-in-out infinite;
-
-}
-
-/* ===========================================================
-   GLOW EFFECT
-=========================================================== */
-
-.glow-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.glow-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    top:-120px;
-
-    left:-120px;
-
-    width:240px;
-
-    height:240px;
-
-    border-radius:50%;
-
-    background:rgba(37,99,235,.08);
-
-    transition:.4s;
-
-}
-
-.glow-card:hover::after{
-
-    transform:scale(1.5);
-
-}
-
-/* ===========================================================
-   SKELETON LOADER
-=========================================================== */
-
-.skeleton{
-
-    height:18px;
-
-    border-radius:8px;
-
-    background:linear-gradient(
-
-        90deg,
-
-        #f1f5f9,
-
-        #e2e8f0,
-
-        #f1f5f9
-
-    );
-
-    background-size:300%;
-
-    animation:skeleton 1.4s infinite;
-
-}
-
-.skeleton.large{
-
-    height:180px;
-
-}
-
-/* ===========================================================
-   ANIMATIONS
-=========================================================== */
-
-@keyframes floatIcon{
-
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-12px);
-
-    }
-
-}
-
-@keyframes skeleton{
-
-    0%{
-
-        background-position:100% 0;
-
-    }
-
-    100%{
-
-        background-position:-100% 0;
+        );
 
     }
 
 }
 
 /* ===========================================================
-   RESPONSIVE
+   INITIALIZE
 =========================================================== */
 
-@media(max-width:1200px){
+document.addEventListener(
 
-    .dashboard-cards,
+    "DOMContentLoaded",
 
-    .resource-grid,
+    () => {
 
-    .stats-grid,
+        loadDashboard();
 
-    .quick-actions-grid{
-
-        grid-template-columns:repeat(2,1fr);
+        startDashboardRefresh();
 
     }
 
-}
+);
 
-@media(max-width:768px){
+/* ===========================================================
+   END
+=========================================================== */
 
-    .hero{
-
-        grid-template-columns:1fr;
-
-        text-align:center;
-
-    }
-
-    .hero-buttons{
-
-        justify-content:center;
-
-    }
-
-    .dashboard-cards,
-
-    .resource-grid,
-
-    .stats-grid,
-
-    .quick-actions-grid,
-
-    .widget-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .hero-left h1{
-
-        font-size:2.5rem;
-
-    }
-
-}
-
-@media(max-width:576px){
-
-    .dashboard-cards .card{
-
-        flex-direction:column;
-
-        text-align:center;
-
-        gap:20px;
-
-    }
-
-    .resource-card,
-
-    .stat-widget,
-
-    .action-card{
-
-        padding:20px;
-
-    }
-
-}
+console.log("✅ Dashboard Ready");

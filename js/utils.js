@@ -254,13 +254,17 @@ function setTheme(theme) {
 
     );
 
-    document.body.classList.add(theme);
+    if (theme) {
+
+        document.body.classList.add(theme);
+
+    }
 
     saveStorage(
 
         STORAGE.THEME,
 
-        theme
+        theme || "light"
 
     );
 
@@ -272,7 +276,7 @@ function loadTheme() {
 
         STORAGE.THEME,
 
-        "light"
+        "dark"
 
     );
 
@@ -415,6 +419,7 @@ async function copyText(text) {
     }
 
 }
+
 /* ===========================================================
    SCROLL TO TOP
 =========================================================== */
@@ -820,6 +825,7 @@ window.addEventListener(
     }
 
 );
+
 /* ===========================================================
    KEYBOARD SHORTCUTS
 =========================================================== */

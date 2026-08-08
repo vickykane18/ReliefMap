@@ -21,10 +21,12 @@
 
     height:100vh;
 
-    background:linear-gradient(
+    height:100dvh;
+
+background:linear-gradient(
         180deg,
-        #111827,
-        #0f172a
+        #0b1e2b,
+        #0e2a35
     );
 
     color:white;
@@ -33,9 +35,9 @@
 
     flex-direction:column;
 
-    justify-content:space-between;
+    overflow-y:auto;
 
-    overflow:hidden;
+    overflow-x:hidden;
 
     z-index:1000;
 
@@ -71,11 +73,7 @@
 
     border-radius:16px;
 
-    background:linear-gradient(
-        135deg,
-        #2563eb,
-        #06b6d4
-    );
+background:var(--gradient);
 
     display:flex;
 
@@ -123,7 +121,9 @@
 
 .menu li{
 
-    margin:6px 15px;
+    margin:4px 12px;
+
+    border-radius:14px;
 
 }
 
@@ -135,7 +135,7 @@
 
     gap:16px;
 
-    padding:15px 20px;
+    padding:14px 18px;
 
     border-radius:14px;
 
@@ -143,7 +143,15 @@
 
     font-weight:500;
 
+    text-decoration:none;
+
+    cursor:pointer;
+
+    width:100%;
+
     transition:.3s;
+
+    -webkit-tap-highlight-color:transparent;
 
 }
 
@@ -155,42 +163,58 @@
 
     font-size:18px;
 
+    flex-shrink:0;
+
+    transition:.3s;
+
+}
+
+.menu li a span{
+
+    white-space:nowrap;
+
+    transition:.3s;
+
 }
 
 /* ===========================================================
-   HOVER
+   HOVER  — ReliefMap green/teal
 =========================================================== */
 
 .menu li a:hover{
 
-    background:rgba(255,255,255,.08);
-
-    color:white;
-
-    transform:translateX(6px);
-
-}
-
-/* ===========================================================
-   ACTIVE
-=========================================================== */
-
-.menu li.active a{
-
     background:linear-gradient(
         135deg,
-        #2563eb,
-        #3b82f6
+        #1ABFAC,
+        #159A8A
     );
 
     color:white;
 
-    box-shadow:0 8px 20px rgba(37,99,235,.35);
+    transform:translateX(4px);
+
+    box-shadow:0 6px 18px rgba(20,184,166,.35);
+
+}
+
+.menu li a:hover i{
+
+    color:white;
 
 }
 
 /* ===========================================================
-   ACTIVE BAR
+   PRESSED / TOUCH STATE
+=========================================================== */
+
+.menu li a:active{
+
+    transform:translateX(2px) scale(.98);
+
+}
+
+/* ===========================================================
+   ACTIVE  — ReliefMap green/teal
 =========================================================== */
 
 .menu li.active{
@@ -199,23 +223,53 @@
 
 }
 
+.menu li.active a{
+
+    background:linear-gradient(
+        135deg,
+        #1ABFAC,
+        #159A8A
+    );
+
+    color:white;
+
+    font-weight:600;
+
+    box-shadow:0 8px 20px rgba(20,184,166,.45);
+
+}
+
+.menu li.active a i{
+
+    color:white;
+
+}
+
+/* ===========================================================
+   ACTIVE BAR (teal accent on the left)
+=========================================================== */
+
 .menu li.active::before{
 
     content:"";
 
     position:absolute;
 
-    left:-15px;
+    left:-12px;
 
-    top:10px;
+    top:50%;
+
+    transform:translateY(-50%);
 
     width:5px;
 
-    height:40px;
+    height:38px;
 
     border-radius:20px;
 
-    background:#38bdf8;
+    background:#2DD4BF;
+
+    box-shadow:0 0 12px rgba(45,212,191,.7);
 
 }
 
@@ -225,7 +279,7 @@
 
 .menu-title{
 
-    color:#64748b;
+    color:#94a3b8;
 
     font-size:.75rem;
 
@@ -302,25 +356,111 @@
 
 .system-status{
 
-    padding:20px;
+    margin:20px 16px 24px;
 
-    margin:15px;
+    padding:22px 20px;
 
-    border-radius:18px;
+    border-radius:20px;
 
-    background:rgba(37,99,235,.12);
+    background:rgba(255,255,255,.07);
+
+    backdrop-filter:blur(20px);
+
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    box-shadow:0 12px 32px rgba(0,0,0,.22);
+
+    flex-shrink:0;
 
 }
 
-.system-status h4{
+.ss-head{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:16px;
+
+}
+
+.ss-head i{
+
+    width:34px;
+
+    height:34px;
+
+    border-radius:10px;
+
+    background:rgba(34,197,94,.18);
+
+    color:#4ade80;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:16px;
+
+}
+
+.ss-head h4{
 
     color:white;
 
-    margin-bottom:15px;
+    font-size:.95rem;
+
+    letter-spacing:.3px;
 
 }
 
-.status-item{
+.ss-status-line{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+}
+
+.ss-status-line .status-dot{
+
+    width:11px;
+
+    height:11px;
+
+    border-radius:50%;
+
+    background:#22c55e;
+
+    box-shadow:0 0 0 4px rgba(34,197,94,.22);
+
+    animation:pulse 2s infinite;
+
+    flex-shrink:0;
+
+}
+
+.ss-status-line span{
+
+    color:#d1fae5;
+
+    font-size:.85rem;
+
+    font-weight:600;
+
+}
+
+.ss-item{
 
     display:flex;
 
@@ -328,25 +468,29 @@
 
     align-items:center;
 
-    margin-bottom:12px;
+    padding:9px 0;
+
+    border-top:1px solid rgba(255,255,255,.08);
 
     color:#cbd5e1;
 
-    font-size:.9rem;
+    font-size:.82rem;
 
 }
 
-.status-dot{
+.ss-item strong{
 
-    width:10px;
+    color:white;
 
-    height:10px;
+    font-weight:600;
 
-    border-radius:50%;
+}
 
-    background:#22c55e;
+.ss-item .ss-value{
 
-    animation:pulse 2s infinite;
+    color:#4ade80;
+
+    font-weight:600;
 
 }
 
@@ -356,7 +500,11 @@
 
 .storage{
 
-    margin-top:20px;
+    margin-top:14px;
+
+    padding-top:14px;
+
+    border-top:1px solid rgba(255,255,255,.08);
 
 }
 
@@ -394,10 +542,10 @@
 
     height:100%;
 
-    background:linear-gradient(
+background:linear-gradient(
         90deg,
-        #06b6d4,
-        #2563eb
+        #2DD4BF,
+        #14B8A6
     );
 
     border-radius:50px;
@@ -416,11 +564,7 @@
 
     border-radius:18px;
 
-    background:linear-gradient(
-        135deg,
-        #2563eb,
-        #06b6d4
-    );
+background:var(--gradient);
 
     color:white;
 
@@ -462,7 +606,7 @@
 
     background:white;
 
-    color:#2563eb;
+    color:#0d9488;
 
     font-weight:600;
 
@@ -486,7 +630,7 @@
 
     border-radius:50%;
 
-    background:#2563eb;
+background:var(--primary);
 
     color:white;
 
@@ -560,7 +704,7 @@
 
 .sidebar::-webkit-scrollbar-thumb{
 
-    background:#3b82f6;
+    background:#2DD4BF;
 
     border-radius:20px;
 

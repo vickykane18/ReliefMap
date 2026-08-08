@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "name": "ReliefMap Knowledge Base",
+    "version": "1.0",
+    "description": "Local disaster-relief knowledge base used by ReliefBot AI when the backend/OpenAI is unavailable."
+  },
+  "intents": [
+    {
+      "id": "platform",
+      "keywords": ["what is reliefmap", "about reliefmap", "reliefmap", "what is reliefmap?", "tell me about reliefmap", "what do you do"],
+      "answer": "ReliefMap is an AI-powered community disaster relief coordination platform. It helps citizens, NGOs, and volunteers monitor disasters, coordinate relief efforts, manage shelters and food centers, track hospitals, and access live emergency information — all in real time.",
+      "actions": [{ "label": "View Dashboard", "url": "index.html" }]
+    },
+    {
+      "id": "how_works",
+      "keywords": ["how does reliefmap work", "how reliefmap works", "how it works", "how does it work", "platform usage", "how to use"],
+      "answer": "ReliefMap works in 4 steps:\n1. Citizens & authorities report disasters (floods, fires, cyclones, earthquakes) via the 'Report a Disaster' form.\n2. The AI analyzes each report and assigns a risk score and severity level.\n3. Relief centers, volunteers, and NGOs are automatically mobilized and resources are allocated.\n4. Everyone tracks live updates on the map, analytics, and news feed.",
+      "actions": [{ "label": "Report a Disaster", "url": "index.html" }, { "label": "Live Map", "url": "map.html" }]
+    },
+    {
+      "id": "shelter",
+      "keywords": ["shelter", "safe place", "evacuation", "evacuate", "refuge", "housing", "where can i stay", "nearest shelter", "shelters available", "available shelters"],
+      "answer": "Here's how to find the nearest shelter:\n• Open the Live Map and enable the 'Shelters' filter.\n• Shelters show capacity and available facilities.\n• During an emergency, AI prioritizes the nearest open shelter with the most space.\n\nYou can also ask me for a specific location and I'll point you to the closest option.",
+      "actions": [{ "label": "Find Shelter on Map", "url": "map.html" }]
+    },
+    {
+      "id": "food",
+      "keywords": ["food", "hungry", "meal", "eat", "food center", "food bank", "ration", "i need food", "where can i find food"],
+      "answer": "Food distribution centers are operating across the region. To find the nearest one:\n• Open the Live Map and filter by 'Food Centers'.\n• Each center shows available quantity and distance.\n\nIf you need immediate food relief, head to the closest open Food Center or contact the coordination team.",
+      "actions": [{ "label": "Find Food Centers", "url": "map.html" }, { "label": "Contact Team", "url": "contact.html" }]
+    },
+    {
+      "id": "hospital",
+      "keywords": ["hospital", "medical", "doctor", "clinic", "treatment", "nearby hospital", "emergency room", "medical help", "first aid center"],
+      "answer": "To find nearby hospitals and medical help:\n• Open the Live Map and filter by 'Hospitals'.\n• Each hospital shows emergency availability and bed status.\n\nFor life-threatening medical emergencies, call 112 immediately.",
+      "actions": [{ "label": "Find Hospitals", "url": "map.html" }]
+    },
+    {
+      "id": "ngo",
+      "keywords": ["ngo", "organization", "non profit", "relief org", "charity", "nearby ngos", "help organizations"],
+      "answer": "NGOs are a key part of ReliefMap. They manage relief operations, coordinate missions, and distribute resources. You can:\n• Register as an NGO to manage operations.\n• Partner with us through the Contact page.\n• View NGO-coordinated missions on the dashboard.",
+      "actions": [{ "label": "Register as NGO", "url": "login.html" }, { "label": "Contact Us", "url": "contact.html" }]
+    },
+    {
+      "id": "volunteer",
+      "keywords": ["volunteer", "i want to volunteer", "volunteer registration", "how to volunteer", "join", "help out", "become volunteer", "sign up volunteer"],
+      "answer": "Volunteering is easy! Here's what to do:\n1. Register/log in and select the 'Volunteer' role.\n2. View available missions on your dashboard.\n3. Accept missions and get deployed to disaster zones.\n\nRequirements: valid ID, willingness to help, and basic emergency training (provided by ReliefMap).",
+      "actions": [{ "label": "Register as Volunteer", "url": "login.html" }, { "label": "View Missions", "url": "index.html" }]
+    },
+    {
+      "id": "donate",
+      "keywords": ["donate", "donation", "how to donate", "give money", "contribute", "help financially", "donate food", "donate medicine", "donate clothes"],
+      "answer": "Thank you for wanting to help! You can donate:\n• Food — drop off at any Food Center or shelter.\n• Medicine — to hospitals and medical stations.\n• Money — via the coordination team.\n• Clothes — at designated collection points.\n\nEvery contribution is tracked and allocated where it's needed most.",
+      "actions": [{ "label": "Donate", "url": "contact.html" }]
+    },
+    {
+      "id": "flood_safety",
+      "keywords": ["flood", "flood safety", "flood tips", "flooding", "water rising", "flood precautions", "flood warning"],
+      "answer": "Official Flood Safety Guidelines:\n• Move to higher ground immediately.\n• Avoid walking or driving through floodwater.\n• Turn off electricity and gas before evacuating.\n• Do not drink floodwater — it's contaminated.\n• Keep an emergency kit with food, water, and medicine.\n• Stay tuned to relief alerts and follow evacuation orders.\n\nIf you're trapped, call 112 or the emergency hotline.",
+      "actions": [{ "label": "Emergency Contacts", "url": "contact.html" }]
+    },
+    {
+      "id": "cyclone_safety",
+      "keywords": ["cyclone", "storm", "hurricane", "typhoon", "cyclone safety", "storm precautions", "wind warning"],
+      "answer": "Cyclone Safety Precautions:\n• Stay indoors and away from windows.\n• Secure loose objects that could become projectiles.\n• Stock up on water, food, batteries, and a first-aid kit.\n• Move to a designated shelter if ordered to evacuate.\n• Avoid coastal areas and low-lying regions.\n• Keep your phone charged and follow official alerts.",
+      "actions": [{ "label": "Find Shelter", "url": "map.html" }]
+    },
+    {
+      "id": "earthquake_safety",
+      "keywords": ["earthquake", "seismic", "tremor", "earthquake safety", "earthquake precautions"],
+      "answer": "Earthquake Safety Tips:\n• Drop, Cover, and Hold On.\n• Stay away from windows, glass, and heavy furniture.\n• If indoors, stay there — do not run outside.\n• If outdoors, move to an open area away from buildings.\n• After shaking, expect aftershocks and check for injuries.\n• Follow relief team instructions for evacuation.",
+      "actions": [{ "label": "Emergency Contacts", "url": "contact.html" }]
+    },
+    {
+      "id": "fire_safety",
+      "keywords": ["fire", "fire safety", "fire tips", "burning", "fire precautions", "smoke"],
+      "answer": "Fire Safety Guidelines:\n• If a fire starts, evacuate immediately and call 112.\n• Stay low to avoid smoke inhalation.\n• Feel doors before opening — if hot, find another exit.\n• Never use water on electrical or oil fires.\n• Have a fire extinguisher and know how to use it.\n• Keep a meeting point outside your home.",
+      "actions": [{ "label": "Emergency Contacts", "url": "contact.html" }]
+    },
+    {
+      "id": "emergency_contacts",
+      "keywords": ["emergency contacts", "emergency number", "phone number", "who to call", "help number", "emergency hotline", "call for help", "rescue"],
+      "answer": "Emergency Contacts:\n• National Emergency Helpline: 112\n• Ambulance: 108\n• Fire: 101\n• Police: 100\n• Disaster Management: 1078\n• ReliefMap Coordination Team: +91 96772 18987\n\nSave these numbers and share them with your family.",
+      "actions": [{ "label": "Coordination Team", "url": "contact.html" }]
+    },
+    {
+      "id": "first_aid",
+      "keywords": ["first aid", "medical first aid", "how to help injured", "cpr", "bandage", "wound", "bleeding", "unconscious"],
+      "answer": "Basic First Aid Tips:\n• Call 112 immediately for emergencies.\n• For bleeding, apply firm pressure with a clean cloth.\n• For burns, cool with running water for 10 minutes.\n• Do NOT move someone with a suspected spinal injury.\n• If someone is unconscious but breathing, place them on their side.\n• Perform CPR only if you are trained (30 compressions : 2 breaths).",
+      "actions": [{ "label": "Find Medical Help", "url": "map.html" }]
+    },
+    {
+      "id": "preparedness",
+      "keywords": ["disaster preparedness", "prepared", "emergency kit", "be ready", "prepare", "disaster plan", "ready for disaster"],
+      "answer": "Disaster Preparedness Checklist:\n• Prepare an emergency kit: water, food, flashlight, batteries, first aid, medicines, important documents.\n• Create a family emergency plan and meeting point.\n• Know the nearest shelter and evacuation routes.\n• Keep emergency contacts saved and written down.\n• Stay informed via ReliefMap alerts.\n\nPreparedness saves lives — start today!",
+      "actions": [{ "label": "View Alerts", "url": "news.html" }]
+    },
+    {
+      "id": "food_availability",
+      "keywords": ["food availability", "is there food", "food available", "food supply", "food stock"],
+      "answer": "Food availability is monitored in real time across all Food Centers. Open the Live Map and filter by 'Food Centers' to see current stock levels and quantities. You can also ask me about a specific center and I'll check its availability.",
+      "actions": [{ "label": "Check Food Availability", "url": "map.html" }]
+    },
+    {
+      "id": "medicine_availability",
+      "keywords": ["medicine availability", "is there medicine", "medicine stock", "medical supply", "medication", "medicines"],
+      "answer": "Medicine availability is tracked at hospitals and medical stations. Open the Live Map and filter by 'Hospitals' to view medical supply status. For urgent medication needs, contact the nearest hospital or the coordination team.",
+      "actions": [{ "label": "Find Hospitals", "url": "map.html" }, { "label": "Contact Team", "url": "contact.html" }]
+    },
+    {
+      "id": "water_availability",
+      "keywords": ["water availability", "is there water", "drinking water", "clean water", "water supply", "water station"],
+      "answer": "Clean drinking water is distributed at Food Centers and shelters. Open the Live Map and filter by 'Food Centers' to find water distribution points. Remember: never drink floodwater, as it is contaminated.",
+      "actions": [{ "label": "Find Water Points", "url": "map.html" }]
+    },
+    {
+      "id": "navigation",
+      "keywords": ["navigation", "directions", "how to reach", "which way", "get there", "map help", "where is"],
+      "answer": "For navigation to relief centers, shelters, hospitals, and food points:\n• Use the Live Map which pins all relief locations.\n• Use the 'My Location' button to center the map on you.\n• Enable the relevant filter to highlight what you need.\n\nIf you need directions to a specific place, tell me the place name and location, and I'll help.",
+      "actions": [{ "label": "Open Live Map", "url": "map.html" }]
+    },
+    {
+      "id": "hello",
+      "keywords": ["hello", "hi", "hey", "good morning", "good afternoon", "good evening", "greetings", "namaste", "vanakkam"],
+      "answer": "Hello! I'm ReliefBot AI, your disaster relief assistant. I can help you find shelters, food, hospitals, volunteer opportunities, donation options, and share vital safety tips. What do you need help with today?"
+    },
+    {
+      "id": "thanks",
+      "keywords": ["thank you", "thanks", "thank", "much appreciated", "thx"],
+      "answer": "You're most welcome! Stay safe and don't hesitate to ask if you need anything else. ReliefMap is here for you. 🙏"
+    },
+    {
+      "id": "who_are_you",
+      "keywords": ["who are you", "your name", "what is your name", "are you a bot", "who made you", "introduce yourself"],
+      "answer": "I'm ReliefBot AI — the intelligent assistant of ReliefMap. I'm here to help citizens, NGOs, and volunteers during disasters by providing real-time relief information, safety guidelines, and coordination support."
+    },
+    {
+      "id": "map_help",
+      "keywords": ["map", "live map", "view map", "where is the map", "interactive map"],
+      "answer": "The Live Map shows all relief centers, shelters, hospitals, food centers, and volunteer locations in real time. Just click the button below to open it. You can filter by category and use 'My Location' for navigation.",
+      "actions": [{ "label": "Open Live Map", "url": "map.html" }]
+    },
+    {
+      "id": "donation_how",
+      "keywords": ["how to donate", "donation process", "donate money", "donate items", "where to donate"],
+      "answer": "To donate:\n• Money — contact the coordination team for bank details.\n• Food — drop off at any Food Center.\n• Medicine — deliver to the nearest hospital.\n• Clothes — use designated collection points.\n\nEvery donation is logged and distributed to those in need. Contact us to coordinate your contribution.",
+      "actions": [{ "label": "Donate Now", "url": "contact.html" }]
+    },
+    {
+      "id": "register_platform",
+      "keywords": ["register", "create account", "sign up", "join reliefmap", "new user", "how to register"],
+      "answer": "To register on ReliefMap:\n1. Click 'Login' on the top bar.\n2. Switch to the 'Register' tab.\n3. Choose your role: Citizen, NGO, or Volunteer.\n4. Fill in your details and create your account.\n\nOnce registered, you can report disasters, volunteer, and access personalized relief tools.",
+      "actions": [{ "label": "Register / Login", "url": "login.html" }]
+    },
+    {
+      "id": "report_disaster",
+      "keywords": ["report", "report a disaster", "reporting", "incident", "how to report", "report flood", "report fire"],
+      "answer": "To report a disaster:\n1. Click 'Report a Disaster' on the dashboard.\n2. Enter your name, contact, and location.\n3. Select the disaster type and severity.\n4. Describe the situation and submit.\n\nThe AI will analyze your report, assign a risk score, and alert the relief team for deployment.",
+      "actions": [{ "label": "Report a Disaster", "url": "index.html" }]
+    },
+    {
+      "id": "analytics",
+      "keywords": ["analytics", "statistics", "data", "charts", "trends", "rescue trend", "resource usage"],
+      "answer": "The Analytics page shows:\n• Relief center distribution\n• Daily rescue trends\n• Resource usage\n• Volunteer allocation\n\nThis helps coordinators make data-driven decisions during disasters.",
+      "actions": [{ "label": "View Analytics", "url": "analytics.html" }]
+    },
+    {
+      "id": "news_updates",
+      "keywords": ["news", "updates", "latest news", "alerts", "live feed", "notification", "breaking"],
+      "answer": "The News page provides real-time updates from disaster zones, relief operations, and priority alerts. You can search for specific news and read featured stories about ongoing relief efforts.",
+      "actions": [{ "label": "View News", "url": "news.html" }]
+    },
+    {
+      "id": "profile_help",
+      "keywords": ["profile", "my profile", "edit profile", "update profile", "my account", "settings account"],
+      "answer": "Your Profile page lets you manage your personal information, phone, email, and photo. You can also track your missions completed, volunteers led, field reports, and alerts. Go to Settings to customize your theme and language.",
+      "actions": [{ "label": "My Profile", "url": "profile.html" }, { "label": "Settings", "url": "settings.html" }]
+    },
+    {
+      "id": "fallback",
+      "keywords": [],
+      "answer": "I'm not entirely sure about that. Here's what I can help with:\n• Finding shelters, food, and hospitals\n• Volunteering and donations\n• Flood, cyclone, earthquake & fire safety\n• Emergency contacts & first aid\n• Disaster preparedness\n\nTry one of the quick suggestions below, or ask me something like 'Where is the nearest shelter?'"
+    }
+  ]
+}

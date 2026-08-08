@@ -46,34 +46,67 @@ function getRelativeTime(date){
 }
 
 /* ===========================================================
+   HTML ESCAPE
+=========================================================== */
+
+function escapeHTML(value) {
+
+    return String(value == null ? "" : value)
+        .replace(/&/g, "&" + "amp;")
+        .replace(/</g, "&" + "lt;")
+        .replace(/>/g, "&" + "gt;")
+        .replace(/"/g, "&" + "quot;")
+        .replace(/'/g, "&#" + "39;");
+
+}
+
+/* ===========================================================
    CREATE NEWS CARD
 =========================================================== */
 
+function resolveNewsImage(image) {
+    if (!image) return 'assets/images/news-placeholder.jpg';
+    // Already a full path, data URI, or absolute URL
+    if (image.startsWith('http') || image.startsWith('data:') ||
+        image.startsWith('/') || image.startsWith('assets/')) {
+        return image;
+    }
+    // Bare filename stored in DB (e.g. "news1.jpg") -> map to assets/images/
+    return 'assets/images/' + image;
+}
+
 function createNewsCard(news){
+
+    const title = escapeHTML(news.title);
+    const content = escapeHTML(news.content);
+    const category = escapeHTML(news.category || "General");
+    const image = escapeHTML(resolveNewsImage(news.image));
 
     return `
 
-    <article class="news-card fade-up">
+<article class="news-card fade-up">
 
-        <img src="${news.image || 'assets/images/news-placeholder.jpg'}"
+        <img src="${image}"
 
-             alt="${news.title}">
+             alt="${title}"
+             loading="lazy"
+             onerror="this.onerror=null;this.src='assets/images/news-placeholder.jpg';this.classList.add('img-fallback');">
 
         <div class="news-content">
 
             <span class="news-tag ${
 
-                news.category?.toLowerCase() || "warning"
+                escapeHTML(news.category?.toLowerCase() || "warning")
 
             }">
 
-                ${news.category || "General"}
+                ${category}
 
             </span>
 
-            <h3>${news.title}</h3>
+            <h3>${title}</h3>
 
-            <p>${news.content}</p>
+            <p>${content}</p>
 
             <small>
 
@@ -99,11 +132,16 @@ function renderFeatured(news){
 
     if(!featuredNews) return;
 
+const title = escapeHTML(news.title);
+    const content = escapeHTML(news.content);
+    const image = escapeHTML(resolveNewsImage(news.image));
+
     featuredNews.innerHTML = `
 
     <div class="featured-news">
 
-        <img src="${news.image || 'assets/images/news-placeholder.jpg'}">
+        <img src="${image}" alt="${title}"
+             onerror="this.onerror=null;this.src='assets/images/news-placeholder.jpg';this.classList.add('img-fallback');">
 
         <div class="featured-content">
 
@@ -113,11 +151,11 @@ function renderFeatured(news){
 
             </span>
 
-            <h2>${news.title}</h2>
+            <h2>${title}</h2>
 
-            <p>${news.content}</p>
+            <p>${content}</p>
 
-            <button class="primary-btn">
+            <button class="primary-btn" onclick="showToast('Full story coming soon in the demo feed.','info')">
 
                 Read More
 

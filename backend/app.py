@@ -18,6 +18,12 @@ from routes.news import news_bp
 from routes.users import users_bp
 from routes.settings import settings_bp
 from routes.contact import contact_bp
+from routes.reports import reports_bp
+from routes.ai import ai_bp
+from routes.auth import auth_bp
+
+from models.disaster_report import DisasterReport
+from models.mission import Mission
 
 
 def create_app():
@@ -36,6 +42,9 @@ def create_app():
     app.register_blueprint(users_bp)
     app.register_blueprint(settings_bp)
     app.register_blueprint(contact_bp)
+    app.register_blueprint(reports_bp)
+    app.register_blueprint(ai_bp)
+    app.register_blueprint(auth_bp)
 
     @app.route("/")
     def home():
@@ -58,8 +67,14 @@ with app.app_context():
 
 
 if __name__ == "__main__":
+    import os
+
+    port = int(os.environ.get("PORT", Config.PORT))
+
     app.run(
-        host=Config.HOST,
-        port=Config.PORT,
-        debug=Config.DEBUG
+        host="0.0.0.0",
+        port=port,
+        debug=False
     )
+
+    
