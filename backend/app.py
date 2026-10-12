@@ -67,10 +67,14 @@ with app.app_context():
 
 
 if __name__ == "__main__":
+    import os
+
+    port = int(os.environ.get("PORT", Config.PORT))
+
     app.run(
         host=Config.HOST,
-        port=Config.PORT,
-        debug=Config.DEBUG
+        port=port,
+        debug=False
     )
 
     
