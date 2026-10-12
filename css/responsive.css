@@ -56,9 +56,15 @@
 
     .hero{
 
-        grid-template-columns:1fr;
+        justify-content:center;
 
         text-align:center;
+
+    }
+
+    .hero-content{
+
+        margin:auto;
 
     }
 
@@ -124,18 +130,15 @@
 
     }
 
-    .search-box{
+    .info-panel{
 
-        width:250px;
+        left:0;
 
     }
 
     .dashboard-cards,
-
     .resource-grid,
-
     .stats-grid,
-
     .trend-grid{
 
         grid-template-columns:repeat(2,1fr);
@@ -148,7 +151,93 @@
    MOBILE
 =========================================================== */
 
+@media(max-width:1200px){
+
+    .info-panel{
+
+        height:auto;
+
+        flex-wrap:wrap;
+
+        justify-content:flex-start;
+
+        gap:14px 6px;
+
+        padding:14px 18px;
+
+    }
+
+    .info-item + .info-item{
+
+        border-left:none;
+
+        padding-left:8px;
+
+    }
+
+}
+
 @media(max-width:768px){
+
+    .info-panel{
+
+        gap:12px;
+
+    }
+
+    .info-item{
+
+        flex:1 1 40%;
+
+        min-width:150px;
+
+    }
+
+    .info-text span{
+
+        font-size:.68rem;
+
+    }
+
+    .info-text strong{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .info-item{
+
+        flex:1 1 100%;
+
+    }
+
+    .info-item + .info-item{
+
+        border-left:none;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .hero{
+
+        min-height:420px;
+
+        padding:40px 25px;
+
+    }
+
+    .hero-content{
+
+        max-width:100%;
+
+    }
 
     h1{
 
@@ -165,32 +254,6 @@
     h3{
 
         font-size:1.1rem;
-
-    }
-
-    .topbar{
-
-        height:auto;
-
-        flex-direction:column;
-
-        gap:15px;
-
-        padding:20px;
-
-    }
-
-    .topbar-right{
-
-        width:100%;
-
-        justify-content:space-between;
-
-    }
-
-    .search-box{
-
-        width:100%;
 
     }
 
@@ -233,12 +296,6 @@
     .footer-container{
 
         grid-template-columns:1fr;
-
-    }
-
-    .weather-mini{
-
-        display:none;
 
     }
 
@@ -295,20 +352,6 @@
         text-align:center;
 
         gap:20px;
-
-    }
-
-    .profile-mini div{
-
-        display:none;
-
-    }
-
-    .notification-btn{
-
-        width:45px;
-
-        height:45px;
 
     }
 

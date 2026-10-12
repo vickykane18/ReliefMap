@@ -1,4 +1,4 @@
-/* ===========================================================
+ta/* ===========================================================
    ReliefMap
    Settings Stylesheet
    Author : Vigneshan S
@@ -216,7 +216,11 @@
 
 .theme-box.active{
 
-    border-color:var(--primary);
+border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(13,148,136,.2);
+
+    transform:scale(1.05);
 
 }
 
@@ -228,19 +232,7 @@
 
 .theme-dark{
 
-    background:#111827;
-
-}
-
-.theme-blue{
-
-    background:#2563eb;
-
-}
-
-.theme-green{
-
-    background:#16a34a;
+    background:#0b1e2b;
 
 }
 

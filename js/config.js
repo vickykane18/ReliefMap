@@ -19,6 +19,9 @@ const CONFIG = {
 
     REQUEST_TIMEOUT: 10000,
 
+    // Set DEBUG to false for production-ready prototype
+    DEBUG: false,
+
     AUTO_REFRESH: true,
 
     REFRESH_INTERVAL: 30000
@@ -129,11 +132,7 @@ const THEMES = [
 
     "light",
 
-    "dark",
-
-    "blue",
-
-    "green"
+    "dark"
 
 ];
 
@@ -202,3 +201,15 @@ const STORAGE = {
 =========================================================== */
 
 console.log("✅ ReliefMap Config Loaded");
+
+// Silence console output when not in debug mode to keep production logs clean
+if (!CONFIG.DEBUG) {
+    try {
+        console.log = function() {};
+        console.info = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+    } catch (e) {
+        // ignore
+    }
+}

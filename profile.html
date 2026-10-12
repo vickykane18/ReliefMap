@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Profile | ReliefMap</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animation.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/roles.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body data-page="profile">
+
+    <!-- Apply saved theme before first paint to avoid a light/dark flash -->
+    <script>
+        (function () {
+            try {
+                var raw = localStorage.getItem("relief_theme");
+                var theme = raw ? JSON.parse(raw) : "dark";
+                if (theme !== "light" && theme !== "dark") theme = "dark";
+                document.body.classList.add(theme);
+            } catch (e) {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
+
+    <!-- =====================================================
+         PERMANENT NAVBAR (consistent relief-themed topbar)
+    ====================================================== -->
+
+    <header class="topbar" role="banner">
+
+        <div class="nav-left">
+
+            <button class="nb-menu-btn" id="nbMenuBtn" aria-label="Toggle sidebar" title="Toggle sidebar">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+                </div>
+                <div class="nav-title">
+                    <span class="nav-main">My Profile</span>
+                    <span class="nav-welcome">ReliefMap&nbsp;<strong>Disaster Intelligence</strong></span>
+                </div>
+            </div>
+
+</div>
+
+        <div class="nav-center">
+            <div class="nav-status" aria-live="polite">
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🌤</span>
+                    <span id="nbWeatherText">Chennai Weather</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">📅</span>
+                    <span id="nbDate">Friday, 07 Aug 2026</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🕒</span>
+                    <span id="nbTime">09:42:35 PM</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="nav-right">
+
+            <button class="nb-emergency-btn" id="nbEmergencyBtn" onclick="location.href='index.html#citizen-requests'" title="Report an emergency">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                <span>Report Emergency</span>
+            </button>
+
+            <div class="nb-online" id="nbOnline" title="Online status">
+                <span class="nb-online-dot on" id="nbOnlineDot"></span>
+                <span class="nb-online-label" id="nbOnlineLabel">Online</span>
+            </div>
+
+            <div class="nb-notif-wrap">
+                <button class="nb-notif-btn" id="nbNotifBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <span class="nb-notif-count" id="nbNotifCount">0</span>
+                    <span class="sr-only">View notifications</span>
+                </button>
+                <div class="nb-notif-dropdown" id="nbNotifDropdown" role="menu" aria-label="Notifications">
+                    <div class="nb-nf-head">
+                        <span>Notifications</span>
+                        <span class="nb-nf-unread" id="nbUnreadBadge">0 unread</span>
+                    </div>
+                    <div class="nb-nf-body" id="nbNotifBody">
+                        <!-- notifications inserted by layout.js -->
+                    </div>
+                    <div class="nb-nf-actions">
+                        <button type="button" id="nbMarkRead">Mark all as read</button>
+                        <button type="button" id="nbClearAll">Clear all</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-profile nb-profile-area">
+                <button class="nb-profile" id="nbProfileBtn" title="Account" aria-haspopup="true" aria-expanded="false">
+                    <span class="nb-avatar nb-avatar-icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                    <div class="nb-profile-info">
+                        <span class="nb-name" id="nbName">User</span>
+                        <span class="nb-role-badge badge-citizen" id="nbRole">Citizen</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down nb-caret" aria-hidden="true"></i>
+                </button>
+                <div class="nb-profile-dropdown" id="nbProfileDropdown" role="menu" aria-label="Profile menu">
+                    <div class="nb-pd-head">
+                        <span class="nb-pd-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                        <div>
+                            <strong id="nbProfileName">User</strong>
+                            <span class="nb-role-badge badge-citizen" id="nbProfileRole">Citizen</span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li onclick="location.href='profile.html'">My Profile</li>
+                        <li onclick="location.href='settings.html'">Settings</li>
+                        <li onclick="showToast('Help &amp; Support — Contact the coordination team.','info')">Help</li>
+                        <li class="nb-divider"></li>
+                        <li class="nb-danger" onclick="layoutLogout()">Logout</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="content" id="pageContent">
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <section class="section-header">
+
+            <div>
+
+                <h2>
+
+                    <i class="fa-solid fa-user"></i>
+
+                    My Profile
+
+                </h2>
+
+                <p class="header-subtitle">
+                    Manage your personal information and track your impact.
+                </p>
+
+            </div>
+
+            <button class="primary-btn" onclick="document.getElementById('profileForm').scrollIntoView({behavior:'smooth'})">
+
+                <i class="fa-solid fa-pen"></i>
+
+                Edit Profile
+
+            </button>
+
+        </section>
+
+        <!-- =====================================================
+             PROFILE CONTAINER
+        ====================================================== -->
+
+        <section class="profile-container">
+
+            <!-- Profile Card -->
+
+<div class="profile-card animate-fade-up stagger-1">
+
+                <div class="profile-banner">
+
+                    <i class="fa-solid fa-shield-heart"></i>
+
+<h2 id="profileName">ReliefMap User</h2>
+
+                    <p id="profileRole">Administrator</p>
+
+                </div>
+
+                <span class="profile-avatar-icon" id="profileAvatar" role="img"
+                      aria-label="Profile Avatar">
+                    <i class="fa-solid fa-user"></i>
+                </span>
+
+                <p>
+                    <i class="fa-regular fa-envelope"></i>
+
+<span id="profileEmail">user@reliefmap.in</span>
+                </p>
+
+                <p>
+                    <i class="fa-solid fa-phone"></i>
+
+                    <span id="profilePhone">+91 96772 18987</span>
+                </p>
+
+                <span class="profile-verified">
+
+                    <i class="fa-solid fa-shield-halved"></i>
+
+                    Verified Coordinator
+
+                </span>
+
+                <button class="logout-btn" onclick="handleLogout()">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+
+                    Logout
+
+                </button>
+
+            </div>
+
+            <!-- Profile Stats -->
+
+            <div>
+
+                <div class="profile-stats">
+
+<div class="stat animate-fade-up stagger-2">
+
+                        <i class="fa-solid fa-handshake-angle"></i>
+
+                        <h1 id="missions">0</h1>
+
+                        <p>Missions Completed</p>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <i class="fa-solid fa-users"></i>
+
+                        <h1 id="volunteers">0</h1>
+
+                        <p>Volunteers Led</p>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <i class="fa-solid fa-file-lines"></i>
+
+                        <h1 id="reports">0</h1>
+
+                        <p>Field Reports</p>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <i class="fa-solid fa-bell"></i>
+
+                        <h1 id="alerts">0</h1>
+
+                        <p>Alerts Raised</p>
+
+                    </div>
+
+                </div>
+
+                <!-- Profile Details -->
+
+                <div class="profile-details">
+
+                    <h3>Contact Information</h3>
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            <i class="fa-regular fa-envelope"></i>
+
+                            Email
+
+                        </span>
+
+<span class="info-value" id="infoEmail">user@reliefmap.in</span>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            <i class="fa-solid fa-phone"></i>
+
+                            Phone
+
+                        </span>
+
+                        <span class="info-value" id="infoPhone">+91 96772 18987</span>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            Location
+
+                        </span>
+
+                        <span class="info-value" id="infoLocation">Chennai, Tamil Nadu, India</span>
+
+                    </div>
+
+                    <div class="info-row">
+
+                        <span class="info-label">
+
+                            <i class="fa-solid fa-id-badge"></i>
+
+                            Role
+
+                        </span>
+
+                        <span class="info-value" id="infoRole">Disaster Coordinator</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             ACHIEVEMENTS
+        ====================================================== -->
+
+        <section class="achievement-section">
+
+            <div class="section-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-award"></i>
+
+                    Achievements
+
+                </h2>
+
+            </div>
+
+            <div class="achievement-grid">
+
+                <div class="achievement">
+
+                    <i class="fa-solid fa-medal"></i>
+
+                    <h4>First Responder</h4>
+
+                    <p>Completed first mission</p>
+
+                </div>
+
+                <div class="achievement">
+
+                    <i class="fa-solid fa-people-group"></i>
+
+                    <h4>Team Builder</h4>
+
+                    <p>Led 100+ volunteers</p>
+
+                </div>
+
+                <div class="achievement">
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    <h4>AI Enabled</h4>
+
+                    <p>Used AI predictions</p>
+
+                </div>
+
+                <div class="achievement">
+
+                    <i class="fa-solid fa-star"></i>
+
+                    <h4>Top Coordinator</h4>
+
+                    <p>Top 5% performers</p>
+
+                </div>
+
+            </div>
+
+            <!-- Dynamic badges from js/profile.js -->
+
+            <div class="badge-list" id="achievementContainer"></div>
+
+        </section>
+
+        <!-- =====================================================
+             TIMELINE
+        ====================================================== -->
+
+        <section class="profile-timeline">
+
+            <div class="section-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+
+                    Activity Timeline
+
+                </h2>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-event">
+
+                    <span class="time">Today, 08:15 AM</span>
+
+                    <h4>Rescue Mission Completed</h4>
+
+                    <p>Led a team of 12 volunteers in North Chennai.</p>
+
+                </div>
+
+                <div class="timeline-event">
+
+                    <span class="time">Yesterday, 06:40 PM</span>
+
+                    <h4>Report Submitted</h4>
+
+                    <p>Filed field report on shelter occupancy.</p>
+
+                </div>
+
+                <div class="timeline-event">
+
+                    <span class="time">2 days ago</span>
+
+                    <h4>Volunteer Training</h4>
+
+                    <p>Trained 25 new volunteers on emergency response.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             EDIT PROFILE FORM
+        ====================================================== -->
+
+        <section class="profile-form-section">
+
+            <div class="section-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-user-pen"></i>
+
+                    Edit Profile
+
+                </h2>
+
+            </div>
+
+            <div class="profile-form">
+
+<form id="profileForm">
+
+                    <div class="form-group">
+
+                        <label>Full Name</label>
+
+<input type="text" id="editName" value="ReliefMap User">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Email</label>
+
+<input type="email" id="editEmail" value="user@reliefmap.in">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Phone</label>
+
+                        <input type="tel" id="editPhone" value="+91 96772 18987">
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label>Profile Photo</label>
+
+                        <input type="file" id="avatarInput" accept="image/*">
+
+                    </div>
+
+                    <button type="submit" class="primary-btn">
+
+                        <i class="fa-solid fa-floppy-disk"></i>
+
+                        Save Changes
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Shared Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/roles.js"></script>
+    <script src="js/layout.js?v=1.1.1"></script>
+    <script src="js/weather.js"></script>
+
+    <!-- Page Scripts -->
+    <script src="js/profile.js"></script>
+
+</body>
+
+</html>

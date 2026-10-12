@@ -155,6 +155,16 @@ async function submitContact(){
 
                 "Message Sent Successfully";
 
+                contactResponse.className =
+
+                    "contact-response show success";
+
+                setTimeout(()=>{
+
+                    contactResponse.classList.remove("show");
+
+                },6000);
+
             }
 
             showToast(

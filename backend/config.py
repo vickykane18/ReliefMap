@@ -27,7 +27,8 @@ class Config:
 
     JSON_SORT_KEYS = False
 
-    DEBUG = True
+    # Disable debug mode for production-ready prototype
+    DEBUG = False
 
     HOST = "0.0.0.0"
 

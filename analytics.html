@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Analytics | ReliefMap</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/roles.css">
+    <link rel="stylesheet" href="css/analytics.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body data-page="analytics">
+
+    <!-- Apply saved theme before first paint to avoid a light/dark flash -->
+    <script>
+        (function () {
+            try {
+                var raw = localStorage.getItem("relief_theme");
+                var theme = raw ? JSON.parse(raw) : "dark";
+                if (theme !== "light" && theme !== "dark") theme = "dark";
+                document.body.classList.add(theme);
+            } catch (e) {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
+
+    <!-- =====================================================
+         PERMANENT NAVBAR (consistent relief-themed topbar)
+    ====================================================== -->
+
+    <header class="topbar" role="banner">
+
+        <div class="nav-left">
+
+            <button class="nb-menu-btn" id="nbMenuBtn" aria-label="Toggle sidebar" title="Toggle sidebar">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+                </div>
+                <div class="nav-title">
+                    <span class="nav-main">Analytics</span>
+                    <span class="nav-welcome">ReliefMap&nbsp;<strong>Disaster Intelligence</strong></span>
+                </div>
+            </div>
+
+</div>
+
+        <div class="nav-center">
+            <div class="nav-status" aria-live="polite">
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🌤</span>
+                    <span id="nbWeatherText">Chennai Weather</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">📅</span>
+                    <span id="nbDate">Friday, 07 Aug 2026</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🕒</span>
+                    <span id="nbTime">09:42:35 PM</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="nav-right">
+
+            <button class="nb-emergency-btn" id="nbEmergencyBtn" onclick="location.href='index.html#citizen-requests'" title="Report an emergency">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                <span>Report Emergency</span>
+            </button>
+
+            <div class="nb-online" id="nbOnline" title="Online status">
+                <span class="nb-online-dot on" id="nbOnlineDot"></span>
+                <span class="nb-online-label" id="nbOnlineLabel">Online</span>
+            </div>
+
+            <div class="nb-notif-wrap">
+                <button class="nb-notif-btn" id="nbNotifBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <span class="nb-notif-count" id="nbNotifCount">0</span>
+                    <span class="sr-only">View notifications</span>
+                </button>
+                <div class="nb-notif-dropdown" id="nbNotifDropdown" role="menu" aria-label="Notifications">
+                    <div class="nb-nf-head">
+                        <span>Notifications</span>
+                        <span class="nb-nf-unread" id="nbUnreadBadge">0 unread</span>
+                    </div>
+                    <div class="nb-nf-body" id="nbNotifBody">
+                        <!-- notifications inserted by layout.js -->
+                    </div>
+                    <div class="nb-nf-actions">
+                        <button type="button" id="nbMarkRead">Mark all as read</button>
+                        <button type="button" id="nbClearAll">Clear all</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-profile nb-profile-area">
+                <button class="nb-profile" id="nbProfileBtn" title="Account" aria-haspopup="true" aria-expanded="false">
+                    <span class="nb-avatar nb-avatar-icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                    <div class="nb-profile-info">
+                        <span class="nb-name" id="nbName">User</span>
+                        <span class="nb-role-badge badge-citizen" id="nbRole">Citizen</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down nb-caret" aria-hidden="true"></i>
+                </button>
+                <div class="nb-profile-dropdown" id="nbProfileDropdown" role="menu" aria-label="Profile menu">
+                    <div class="nb-pd-head">
+                        <span class="nb-pd-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                        <div>
+                            <strong id="nbProfileName">User</strong>
+                            <span class="nb-role-badge badge-citizen" id="nbProfileRole">Citizen</span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li onclick="location.href='profile.html'">My Profile</li>
+                        <li onclick="location.href='settings.html'">Settings</li>
+                        <li onclick="showToast('Help &amp; Support — Contact the coordination team.','info')">Help</li>
+                        <li class="nb-divider"></li>
+                        <li class="nb-danger" onclick="layoutLogout()">Logout</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="content" id="pageContent">
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <section class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Disaster Analytics
+
+            </h2>
+
+            <span class="ai-status">● LIVE DATA</span>
+
+        </section>
+
+        <!-- =====================================================
+             CHARTS
+        ====================================================== -->
+
+        <section class="analytics">
+
+            <div class="chart-grid">
+
+                <div class="chart-card">
+
+                    <h3>Relief Center Distribution</h3>
+
+                    <canvas id="distributionChart"></canvas>
+
+                </div>
+
+                <div class="chart-card">
+
+                    <h3>Daily Rescue Trend</h3>
+
+                    <canvas id="trendChart"></canvas>
+
+                </div>
+
+            </div>
+
+            <div class="chart-grid">
+
+                <div class="chart-card">
+
+                    <h3>Resource Usage</h3>
+
+                    <canvas id="resourceChart"></canvas>
+
+                </div>
+
+                <div class="chart-card">
+
+                    <h3>Volunteer Allocation</h3>
+
+                    <canvas id="volunteerChart"></canvas>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Shared Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/roles.js"></script>
+    <script src="js/layout.js?v=1.1.1"></script>
+    <script src="js/weather.js"></script>
+
+    <!-- Page Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/charts.js"></script>
+
+</body>
+
+</html>

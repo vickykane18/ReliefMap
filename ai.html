@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Center | ReliefMap</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/roles.css">
+    <link rel="stylesheet" href="css/ai.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body data-page="ai">
+
+    <!-- Apply saved theme before first paint to avoid a light/dark flash -->
+    <script>
+        (function () {
+            try {
+                var raw = localStorage.getItem("relief_theme");
+                var theme = raw ? JSON.parse(raw) : "dark";
+                if (theme !== "light" && theme !== "dark") theme = "dark";
+                document.body.classList.add(theme);
+            } catch (e) {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
+
+<!-- =====================================================
+         PERMANENT NAVBAR (consistent relief-themed topbar)
+    ====================================================== -->
+
+    <header class="topbar" role="banner">
+
+        <div class="nav-left">
+
+            <button class="nb-menu-btn" id="nbMenuBtn" aria-label="Toggle sidebar" title="Toggle sidebar">
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            </button>
+
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <i class="fa-solid fa-shield-heart" aria-hidden="true"></i>
+                </div>
+                <div class="nav-title">
+                    <span class="nav-main">AI Center</span>
+                    <span class="nav-welcome">ReliefMap&nbsp;<strong>Disaster Intelligence</strong></span>
+                </div>
+            </div>
+
+</div>
+
+        <div class="nav-center">
+            <div class="nav-status" aria-live="polite">
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🌤</span>
+                    <span id="nbWeatherText">Chennai Weather</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">📅</span>
+                    <span id="nbDate">Friday, 07 Aug 2026</span>
+                </span>
+                <span class="nav-status-sep" aria-hidden="true">|</span>
+                <span class="nav-status-item">
+                    <span class="nav-status-icon" aria-hidden="true">🕒</span>
+                    <span id="nbTime">09:42:35 PM</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="nav-right">
+
+            <button class="nb-emergency-btn" id="nbEmergencyBtn" onclick="location.href='index.html#citizen-requests'" title="Report an emergency">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+                <span>Report Emergency</span>
+            </button>
+
+            <div class="nb-online" id="nbOnline" title="Online status">
+                <span class="nb-online-dot on" id="nbOnlineDot"></span>
+                <span class="nb-online-label" id="nbOnlineLabel">Online</span>
+            </div>
+
+            <div class="nb-notif-wrap">
+                <button class="nb-notif-btn" id="nbNotifBtn" title="Notifications" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa-solid fa-bell" aria-hidden="true"></i>
+                    <span class="nb-notif-count" id="nbNotifCount">0</span>
+                    <span class="sr-only">View notifications</span>
+                </button>
+                <div class="nb-notif-dropdown" id="nbNotifDropdown" role="menu" aria-label="Notifications">
+                    <div class="nb-nf-head">
+                        <span>Notifications</span>
+                        <span class="nb-nf-unread" id="nbUnreadBadge">0 unread</span>
+                    </div>
+                    <div class="nb-nf-body" id="nbNotifBody">
+                        <!-- notifications inserted by layout.js -->
+                    </div>
+                    <div class="nb-nf-actions">
+                        <button type="button" id="nbMarkRead">Mark all as read</button>
+                        <button type="button" id="nbClearAll">Clear all</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-profile nb-profile-area">
+                <button class="nb-profile" id="nbProfileBtn" title="Account" aria-haspopup="true" aria-expanded="false">
+                    <span class="nb-avatar nb-avatar-icon"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                    <div class="nb-profile-info">
+                        <span class="nb-name" id="nbName">User</span>
+                        <span class="nb-role-badge badge-citizen" id="nbRole">Citizen</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down nb-caret" aria-hidden="true"></i>
+                </button>
+                <div class="nb-profile-dropdown" id="nbProfileDropdown" role="menu" aria-label="Profile menu">
+                    <div class="nb-pd-head">
+                        <span class="nb-pd-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+                        <div>
+                            <strong id="nbProfileName">User</strong>
+                            <span class="nb-role-badge badge-citizen" id="nbProfileRole">Citizen</span>
+                        </div>
+                    </div>
+                    <ul>
+                        <li onclick="location.href='profile.html'">My Profile</li>
+                        <li onclick="location.href='settings.html'">Settings</li>
+                        <li onclick="showToast('Help &amp; Support — Contact the coordination team.','info')">Help</li>
+                        <li class="nb-divider"></li>
+                        <li class="nb-danger" onclick="layoutLogout()">Logout</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </header>
+
+    <main class="content" id="pageContent">
+
+        <!-- =====================================================
+             PAGE HEADER
+        ====================================================== -->
+
+        <section class="section-header">
+
+            <h2>
+
+                <i class="fa-solid fa-brain"></i>
+
+                AI Command Center
+
+            </h2>
+
+            <span class="ai-status">
+
+                <span class="status-dot"></span>
+
+                <span id="aiStatus">AI ONLINE</span>
+
+            </span>
+
+        </section>
+
+        <!-- =====================================================
+             AI INSIGHTS
+        ====================================================== -->
+
+        <section class="ai-center">
+
+            <div class="ai-grid">
+
+                <div class="ai-card">
+
+                    <i class="fa-solid fa-water"></i>
+
+                    <h3>Flood Prediction</h3>
+
+                    <h1>92%</h1>
+
+                    <p>High flood probability within the next 6 hours.</p>
+
+                </div>
+
+                <div class="ai-card">
+
+                    <i class="fa-solid fa-users"></i>
+
+                    <h3>Volunteers Needed</h3>
+
+                    <h1>128</h1>
+
+                    <p>Deploy additional volunteers to North Chennai.</p>
+
+                </div>
+
+                <div class="ai-card">
+
+                    <i class="fa-solid fa-box"></i>
+
+                    <h3>Food Requirement</h3>
+
+                    <h1>4,250</h1>
+
+                    <p>Food packets predicted for today.</p>
+
+                </div>
+
+                <div class="ai-card">
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <h3>Shelter Capacity</h3>
+
+                    <h1>82%</h1>
+
+                    <p>Most shelters nearing maximum occupancy.</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             AI RECOMMENDATION
+        ====================================================== -->
+
+        <section class="ai-recommendation">
+
+            <div class="section-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-lightbulb"></i>
+
+                    AI Prediction & Recommendation
+
+                </h2>
+
+            </div>
+
+            <div class="recommendation-grid">
+
+                <div class="recommendation-card">
+
+                    <h3>Prediction</h3>
+
+                    <p id="aiPrediction">
+                        Computing intelligence...
+                    </p>
+
+                </div>
+
+                <div class="recommendation-card">
+
+                    <h3>Recommendation</h3>
+
+                    <p id="aiRecommendation">
+                        Analyzing disaster zones...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =====================================================
+             AI CHAT ASSISTANT
+        ====================================================== -->
+
+        <section class="ai-chat-section">
+
+            <div class="section-header">
+
+                <h2>
+
+                    <i class="fa-solid fa-robot"></i>
+
+                    AI Assistant
+
+                </h2>
+
+            </div>
+
+            <div class="chat-container">
+
+                <div class="chat-body" id="aiChatBody"></div>
+
+                <div class="chat-input">
+
+                    <input
+                           type="text"
+                           id="aiInput"
+                           placeholder="Ask about hospitals, shelters, food, volunteers...">
+
+                    <button id="aiSend">
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Shared Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/roles.js"></script>
+    <script src="js/layout.js?v=1.1.1"></script>
+    <script src="js/weather.js"></script>
+
+    <!-- Page Scripts -->
+    <script src="js/ai.js"></script>
+
+</body>
+
+</html>

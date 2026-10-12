@@ -96,13 +96,39 @@
 
     margin-top:15px;
 
-    border-radius:30px;
+border-radius:30px;
 
-    background:#dbeafe;
+    background:#d1f2ec;
 
     color:var(--primary);
 
     font-weight:600;
+
+}
+
+.profile-card .profile-verified{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+background:var(--gradient);
+
+    color:white;
+
+    font-size:.85rem;
+
+}
+
+.profile-card p i{
+
+    color:var(--primary);
+
+    margin-right:8px;
+
+    font-size:.9rem;
 
 }
 
@@ -153,6 +179,24 @@
 .stat p{
 
     margin-top:10px;
+
+}
+
+.stat > i{
+
+    font-size:34px;
+
+    color:var(--primary);
+
+    margin-bottom:12px;
+
+    display:inline-block;
+
+}
+
+.stat:hover > i{
+
+    transform:scale(1.15) rotate(-8deg);
 
 }
 
@@ -211,6 +255,12 @@
 /* ===========================================================
    ACHIEVEMENTS
 =========================================================== */
+
+.achievement-section{
+
+    margin-top:50px;
+
+}
 
 .achievement-grid{
 
@@ -344,6 +394,12 @@
    EDIT PROFILE
 =========================================================== */
 
+.profile-form-section{
+
+    margin-top:60px;
+
+}
+
 .profile-form{
 
     margin-top:40px;
@@ -402,9 +458,9 @@
 
     padding:10px 18px;
 
-    border-radius:30px;
+border-radius:30px;
 
-    background:#eff6ff;
+    background:#e6f7f2;
 
     color:var(--primary);
 
@@ -474,6 +530,120 @@
 
         padding:20px;
 
+    }
+
+}
+
+/* ===========================================================
+   LOGIN-STYLE PROFILE BANNER
+   Mirrors the login page's gradient brand panel
+=========================================================== */
+
+.profile-card{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.profile-banner{
+    width:calc(100% + 70px);
+    margin:-35px -35px 0;
+    background:var(--gradient);
+    color:white;
+    padding:40px 35px 70px;
+    text-align:center;
+    position:relative;
+}
+
+.profile-banner::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    right:-60px;
+    top:-60px;
+}
+
+.profile-banner i{
+    font-size:38px;
+    margin-bottom:14px;
+    display:inline-block;
+}
+
+.profile-banner h2{
+    color:white;
+    margin:0;
+    font-size:1.5rem;
+}
+
+.profile-banner p{
+    color:rgba(255,255,255,.9);
+    margin:6px 0 0;
+}
+
+/* Avatar overlapping the banner (now a user icon container) */
+
+.profile-card img{
+    margin-top:-45px;
+    border:6px solid var(--primary);
+    position:relative;
+    z-index:2;
+    background:var(--card);
+}
+
+.profile-avatar-icon{
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    margin:-45px auto 0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--gradient);
+    color:white;
+    font-size:56px;
+    border:6px solid var(--primary);
+    position:relative;
+    z-index:2;
+    box-shadow:0 10px 24px rgba(13,148,136,.35);
+}
+
+/* Logout button styled like login brand-features pill */
+
+.logout-btn{
+    margin-top:20px;
+    width:100%;
+    padding:13px;
+    border-radius:12px;
+    background:var(--gradient);
+    color:white;
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    box-shadow:0 8px 20px rgba(13,148,136,.25);
+}
+
+.logout-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 26px rgba(13,148,136,.35);
+}
+
+/* ===========================================================
+   RESPONSIVE TWEAKS
+=========================================================== */
+
+@media(max-width:576px){
+
+    .profile-banner{
+        width:calc(100% + 50px);
+        margin:-25px -25px 0;
+        padding:30px 25px 55px;
     }
 
 }

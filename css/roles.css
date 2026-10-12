@@ -1,0 +1,727 @@
+/* ===========================================================
+   ReliefMap
+   Multi-Role Themes & Workflow Components
+   Author : Vigneshan S
+   Year : 2026
+
+   Citizen   — teal/sea-glass (friendly)
+   NGO       — dark blue command-center (professional)
+   Volunteer — green theme (clean/energetic)
+
+   Includes: request cards, mission tracker, offer/donation
+   forms, status stepper, role dashboard sections, glass cards.
+=========================================================== */
+
+/* ===========================================================
+   UNIVERSAL ROLE CARD
+=========================================================== */
+
+.role-section{
+    margin-top:40px;
+}
+
+.role-section .section-header h2{
+    font-size:1.5rem;
+}
+
+.role-section .header-subtitle{
+    color:var(--text-light);
+    font-size:.9rem;
+}
+
+/* KPI grid shared across roles */
+.r-kpis{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    margin:24px 0 8px;
+}
+
+.r-kpi{
+    background:var(--card);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:22px;
+    position:relative;
+    overflow:hidden;
+    transition:var(--transition);
+}
+
+.r-kpi:hover{
+    transform:translateY(-5px);
+    box-shadow:var(--shadow-hover);
+}
+
+.r-kpi i{
+    font-size:30px;
+    color:var(--primary);
+    margin-bottom:14px;
+}
+
+.r-kpi span{
+    color:var(--text-light);
+    font-size:.85rem;
+    display:block;
+    margin-bottom:6px;
+}
+
+.r-kpi strong{
+    font-size:1.8rem;
+    font-weight:700;
+}
+
+.r-kpi .trend{
+    position:absolute;
+    top:18px;
+    right:18px;
+    font-size:.78rem;
+    padding:4px 10px;
+    border-radius:50px;
+    font-weight:600;
+}
+
+.r-kpi .trend.up{
+    background:#dcfce7;
+    color:#16a34a;
+}
+
+.r-kpi .trend.warn{
+    background:#fef3c7;
+    color:#d97706;
+}
+
+/* ===========================================================
+   GLASS PANEL (Apple-level cards)
+=========================================================== */
+
+.glass-card{
+    background:rgba(255,255,255,.72);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(13,148,136,.14);
+    padding:26px;
+    transition:var(--transition);
+}
+
+.glass-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 24px 48px rgba(13,148,136,.2);
+}
+
+/* ===========================================================
+   REQUEST CARD
+=========================================================== */
+
+.request-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:22px;
+    margin-top:22px;
+}
+
+.request-card{
+    background:var(--card);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    transition:var(--transition);
+    border:1px solid var(--border);
+}
+
+.request-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-hover);
+}
+
+.request-card .req-media{
+    height:180px;
+    overflow:hidden;
+    position:relative;
+    background:var(--sidebar);
+}
+
+.request-card .req-media img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+}
+
+.request-card .req-media .req-badge{
+    position:absolute;
+    top:12px;
+    left:12px;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.78rem;
+    font-weight:600;
+    color:white;
+    background:rgba(7,26,34,.7);
+    backdrop-filter:blur(4px);
+}
+
+.request-card .req-media .req-type{
+    position:absolute;
+    bottom:12px;
+    right:12px;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.78rem;
+    font-weight:600;
+    background:var(--gradient);
+    color:white;
+}
+
+.req-body{
+    padding:20px;
+}
+
+.req-body h3{
+    font-size:1.1rem;
+    margin-bottom:6px;
+}
+
+.req-body p{
+    font-size:.86rem;
+    margin-bottom:10px;
+}
+
+.req-meta{
+    display:flex;
+    justify-content:space-between;
+    font-size:.8rem;
+    color:var(--text-light);
+    margin-bottom:14px;
+}
+
+.req-meta span i{
+    margin-right:6px;
+    color:var(--primary);
+}
+
+.status-pill{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:.78rem;
+    font-weight:600;
+}
+
+.status-pill.pending{ background:#fef3c7; color:#d97706; }
+.status-pill.verified{ background:#e0f2fe; color:#0284c7; }
+.status-pill.accepted{ background:#dcfce7; color:#16a34a; }
+.status-pill.completed{ background:#dcfce7; color:#16a34a; }
+.status-pill.assigned{ background:#ede9fe; color:#7c3aed; }
+
+.req-actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:14px;
+}
+
+.req-actions .btn-sm{
+    flex:1;
+    min-width:110px;
+    text-align:center;
+    padding:11px 14px;
+    border-radius:12px;
+    font-weight:600;
+    font-size:.82rem;
+    transition:.25s;
+    cursor:pointer;
+}
+
+.btn-sm.primary{
+    background:var(--primary);
+    color:white;
+}
+.btn-sm.success{
+    background:var(--success);
+    color:white;
+}
+.btn-sm.danger{
+    background:var(--danger);
+    color:white;
+}
+.btn-sm.outline{
+    background:white;
+    border:2px solid var(--primary);
+    color:var(--primary);
+}
+.btn-sm.outline:hover{ background:var(--primary); color:white; }
+
+/* ===========================================================
+   STATUS STEPPER (request tracking)
+=========================================================== */
+
+.stepper{
+    display:flex;
+    align-items:center;
+    gap:0;
+    margin:22px 0;
+    flex-wrap:wrap;
+}
+
+.step{
+    flex:1;
+    text-align:center;
+    position:relative;
+    min-width:90px;
+}
+
+.step .dot{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#e5e7eb;
+    color:#94a3b8;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 8px;
+    font-size:.8rem;
+    font-weight:700;
+    z-index:2;
+    position:relative;
+    transition:.3s;
+}
+
+.step .lbl{
+    font-size:.72rem;
+    color:var(--text-light);
+    font-weight:500;
+}
+
+.step.done .dot{
+    background:var(--success);
+    color:white;
+    box-shadow:0 0 0 5px rgba(22,163,74,.18);
+}
+
+.step.active .dot{
+    background:var(--primary);
+    color:white;
+    box-shadow:0 0 0 5px rgba(13,148,136,.2);
+    animation:stepPulse 1.6s infinite;
+}
+
+@keyframes stepPulse{
+    0%,100%{ box-shadow:0 0 0 5px rgba(13,148,136,.2); }
+    50%{ box-shadow:0 0 0 9px rgba(13,148,136,.12); }
+}
+
+.step::before{
+    content:"";
+    position:absolute;
+    top:17px;
+    left:-50%;
+    width:100%;
+    height:3px;
+    background:#e5e7eb;
+    z-index:1;
+}
+
+.step:first-child::before{ display:none; }
+
+.step.done::before{
+    background:var(--success);
+}
+
+/* ===========================================================
+   FORMS (offer / donate / request)
+=========================================================== */
+
+.r-form{
+    display:grid;
+    gap:16px;
+}
+
+.r-form .form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.r-form input,
+.r-form select,
+.r-form textarea{
+    width:100%;
+    padding:14px 16px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    outline:none;
+    background:white;
+    transition:var(--transition);
+    font-family:"Poppins";
+}
+
+.r-form input:focus,
+.r-form select:focus,
+.r-form textarea:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 4px rgba(13,148,136,.15);
+}
+
+.r-form label{
+    font-size:.85rem;
+    font-weight:600;
+    margin-bottom:6px;
+    display:block;
+}
+
+.r-form .drop-zone{
+    border:2px dashed var(--border);
+    border-radius:14px;
+    padding:30px;
+    text-align:center;
+    color:var(--text-light);
+    cursor:pointer;
+    transition:.3s;
+}
+
+.r-form .drop-zone:hover{
+    border-color:var(--primary);
+    background:rgba(13,148,136,.04);
+}
+
+.r-form .drop-zone i{
+    font-size:32px;
+    margin-bottom:10px;
+    color:var(--primary);
+}
+
+.file-prev{
+    margin-top:12px;
+    max-height:180px;
+    border-radius:12px;
+    overflow:hidden;
+    display:none;
+}
+
+.file-prev img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.primary-gradient{
+    padding:15px;
+    border-radius:13px;
+    background:var(--gradient);
+    color:white;
+    font-weight:600;
+    font-size:1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    box-shadow:0 10px 24px rgba(13,148,136,.3);
+    cursor:pointer;
+}
+
+.primary-gradient:hover{
+    transform:translateY(-2px);
+}
+
+/* ===========================================================
+   ROLE BADGE + TOPBAR GREETING
+=========================================================== */
+
+.role-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 16px;
+    border-radius:50px;
+    font-weight:600;
+    font-size:.82rem;
+    color:white;
+    background:var(--gradient);
+    box-shadow:0 8px 20px rgba(13,148,136,.3);
+}
+
+.role-badge i{
+    font-size:.9rem;
+}
+
+/* ===========================================================
+   MISSION CARD (volunteer)
+=========================================================== */
+
+.mission-card{
+    background:var(--card);
+    border-radius:20px;
+    box-shadow:var(--shadow);
+    padding:24px;
+    border-left:6px solid var(--primary);
+    transition:var(--transition);
+}
+
+.mission-card:hover{
+    box-shadow:var(--shadow-hover);
+    transform:translateY(-4px);
+}
+
+.mission-card h3{
+    margin-bottom:6px;
+}
+
+.mission-card .mission-loc{
+    color:var(--text-light);
+    font-size:.85rem;
+    margin-bottom:12px;
+}
+
+.mission-loc i{
+    color:var(--primary);
+    margin-right:6px;
+}
+
+.mission-state{
+    display:inline-block;
+    padding:6px 14px;
+    border-radius:50px;
+    font-weight:600;
+    font-size:.78rem;
+    margin-top:8px;
+}
+
+.mission-state.otw{ background:#e0f2fe; color:#0284c7; }
+.mission-state.reached{ background:#fef3c7; color:#d97706; }
+.mission-state.helping{ background:#ede9fe; color:#7c3aed; }
+.mission-state.completed{ background:#dcfce7; color:#16a34a; }
+
+/* ===========================================================
+   NOTIFICATION LIST
+=========================================================== */
+
+.notif-list{
+    display:grid;
+    gap:10px;
+    margin-top:14px;
+}
+
+.notif-list .notif{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    background:var(--card);
+    border-radius:14px;
+    padding:14px 16px;
+    box-shadow:var(--shadow);
+    border:1px solid var(--border);
+}
+
+.notif-list .notif i{
+    color:var(--primary);
+    margin-top:3px;
+}
+
+.notif-list .notif .n-text{
+    font-size:.9rem;
+    flex:1;
+}
+
+.notif-list .notif .n-time{
+    font-size:.75rem;
+    color:var(--text-light);
+    white-space:nowrap;
+}
+
+/* ===========================================================
+   NGO DARK COMMAND-CENTER THEME
+=========================================================== */
+
+body.role-ngo{
+    --primary:#1ABFAC;
+    --primary-dark:#159A8A;
+    --primary-light:#DDF8F5;
+    --accent:#1ABFAC;
+    --accent-2:#10b981;
+    --gradient:linear-gradient(135deg,#1ABFAC,#159A8A);
+    --gradient-warm:linear-gradient(135deg,#0F766E,#159A8A);
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --navbar:#0b1e2b;
+    --sidebar:#0a0f1e;
+    --text:#153037;
+    --text-light:#5b7a82;
+    --border:#e2e8f0;
+    --success:#22c55e;
+    --warning:#f59e0b;
+    --danger:#ef4444;
+}
+
+/* ===========================================================
+   VOLUNTEER GREEN THEME
+=========================================================== */
+
+body.role-volunteer{
+    --primary:#1ABFAC;
+    --primary-dark:#159A8A;
+    --primary-light:#DDF8F5;
+    --accent:#1ABFAC;
+    --accent-2:#10b981;
+    --gradient:linear-gradient(135deg,#1ABFAC,#159A8A);
+    --gradient-warm:linear-gradient(135deg,#047857,#159A8A);
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --navbar:#064e3b;
+    --sidebar:#064e3b;
+    --text:#0f3d2e;
+    --text-light:#4f7b6b;
+    --border:#c9ead9;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+}
+
+/* ===========================================================
+   CITIZEN TEAL THEME (default overrides, refined)
+=========================================================== */
+
+body.role-citizen{
+    --primary:#1ABFAC;
+    --primary-dark:#159A8A;
+    --primary-light:#DDF8F5;
+    --accent:#1ABFAC;
+    --accent-2:#10b981;
+    --gradient:linear-gradient(135deg,#1ABFAC,#159A8A);
+    --gradient-warm:linear-gradient(135deg,#0F766E,#10b981);
+    --bg:#f8fafc;
+    --card:#ffffff;
+    --navbar:#0b1e2b;
+    --sidebar:#0b1e2b;
+    --text:#153037;
+    --text-light:#5b7a82;
+    --border:#d9ece8;
+}
+
+/* ===========================================================
+   ROLE HERO (dashboard top)
+=========================================================== */
+
+.role-hero{
+    border-radius:22px;
+    background:var(--gradient);
+    color:white;
+    padding:38px 40px;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:26px;
+    box-shadow:0 18px 40px rgba(0,0,0,.16);
+}
+
+.role-hero::after{
+    content:"";
+    position:absolute;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    background:rgba(255,255,255,.1);
+    right:-80px;
+    top:-80px;
+}
+
+.role-hero h1{
+    font-size:2rem;
+    margin-bottom:10px;
+    position:relative;
+    z-index:2;
+}
+
+.role-hero p{
+    color:rgba(255,255,255,.9);
+    max-width:560px;
+    position:relative;
+    z-index:2;
+}
+
+/* ===========================================================
+   QUICK ACTION BUTTONS (citizen)
+=========================================================== */
+
+.quick-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+    gap:16px;
+    margin-top:22px;
+}
+
+.quick-action{
+    background:var(--card);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    padding:22px;
+    text-align:center;
+    cursor:pointer;
+    transition:var(--transition);
+    border:1px solid var(--border);
+}
+
+.quick-action:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-hover);
+}
+
+.quick-action i{
+    font-size:32px;
+    color:var(--primary);
+    margin-bottom:12px;
+}
+
+.quick-action span{
+    font-size:.85rem;
+    font-weight:600;
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:768px){
+
+    .role-hero{
+        padding:28px 24px;
+    }
+
+    .role-hero h1{
+        font-size:1.5rem;
+    }
+
+    .r-form .form-row{
+        grid-template-columns:1fr;
+    }
+
+    .request-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stepper{
+        gap:4px;
+    }
+
+    .step .lbl{
+        font-size:.62rem;
+    }
+
+    .r-kpi strong{
+        font-size:1.4rem;
+    }
+
+}
+
+@media(max-width:576px){
+
+    .req-actions .btn-sm{
+        min-width:100%;
+    }
+
+    .quick-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+

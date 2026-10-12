@@ -72,11 +72,7 @@
 
     padding:22px 28px;
 
-    background:linear-gradient(
-        135deg,
-        #2563eb,
-        #38bdf8
-    );
+background:var(--gradient);
 
     color:white;
 
@@ -302,7 +298,7 @@
 
     height:70px;
 
-    border:6px solid #dbeafe;
+border:6px solid #d1f2ec;
 
     border-top:6px solid var(--primary);
 

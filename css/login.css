@@ -1,0 +1,359 @@
+/* ===========================================================
+   ReliefMap
+   Login / Auth Stylesheet
+   Author : Vigneshan S
+   Year : 2026
+=========================================================== */
+
+/* ===========================================================
+   LOGIN BODY
+=========================================================== */
+
+.login-body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:30px;
+    background:var(--bg);
+}
+
+/* ===========================================================
+   LOGIN WRAP (split panel)
+=========================================================== */
+
+.login-wrap{
+    display:grid;
+    grid-template-columns:1fr 1.1fr;
+    width:100%;
+    max-width:1100px;
+    min-height:640px;
+    background:var(--card);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:var(--shadow-hover);
+}
+
+/* ===========================================================
+   BRAND PANEL
+=========================================================== */
+
+.login-brand{
+    background:var(--gradient);
+    color:white;
+    padding:60px 50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.login-brand::after{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-90px;
+    bottom:-90px;
+}
+
+.login-brand .brand-logo{
+    width:76px;
+    height:76px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    margin-bottom:28px;
+    box-shadow:0 0 0 8px rgba(255,255,255,.12);
+    animation:brandFloat 4s ease-in-out infinite;
+}
+
+@keyframes brandFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+}
+
+.login-brand h1{
+    font-size:2.6rem;
+    margin-bottom:12px;
+}
+
+.login-brand > p{
+    color:rgba(255,255,255,.9);
+    max-width:320px;
+    margin-bottom:35px;
+}
+
+/* Brand stats */
+
+.brand-stats{
+    display:flex;
+    gap:30px;
+    margin-bottom:30px;
+}
+
+.brand-stats div{
+    text-align:center;
+}
+
+.brand-stats strong{
+    display:block;
+    font-size:1.8rem;
+}
+
+.brand-stats span{
+    font-size:.85rem;
+    color:rgba(255,255,255,.85);
+}
+
+/* Brand features */
+
+.brand-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.brand-features span{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.25);
+    padding:9px 16px;
+    border-radius:50px;
+    font-size:.85rem;
+    backdrop-filter:blur(6px);
+}
+
+.brand-features i{
+    font-size:.9rem;
+}
+
+/* ===========================================================
+   LOGIN CARD
+=========================================================== */
+
+.login-card{
+    padding:55px 50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.login-head h2{
+    font-size:1.9rem;
+    margin-bottom:8px;
+}
+
+.login-head p{
+    margin-bottom:28px;
+}
+
+/* Role toggle */
+
+.role-toggle{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:22px;
+}
+
+.role-btn{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    padding:16px 10px;
+    border-radius:14px;
+    background:var(--bg);
+    color:var(--text-light);
+    font-weight:600;
+    font-size:.85rem;
+    border:2px solid transparent;
+    transition:var(--transition);
+}
+
+.role-btn i{
+    font-size:22px;
+}
+
+.role-btn:hover{
+    border-color:var(--primary);
+    color:var(--primary);
+}
+
+.role-btn.active{
+    background:var(--gradient);
+    color:white;
+    border-color:transparent;
+    box-shadow:0 10px 20px rgba(13,148,136,.25);
+}
+
+/* Tab switch */
+
+.tab-switch{
+    display:flex;
+    background:var(--bg);
+    border-radius:12px;
+    padding:6px;
+    margin-bottom:26px;
+}
+
+.tab-btn{
+    flex:1;
+    padding:12px;
+    border-radius:9px;
+    background:transparent;
+    color:var(--text-light);
+    font-weight:600;
+}
+
+.tab-btn.active{
+    background:var(--card);
+    color:var(--primary);
+    box-shadow:0 4px 12px rgba(13,148,136,.15);
+}
+
+/* Auth forms */
+
+.auth-form{
+    display:grid;
+    gap:16px;
+}
+
+.form-field{
+    position:relative;
+}
+
+.form-field > i{
+    position:absolute;
+    left:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--text-light);
+    font-size:.95rem;
+}
+
+.form-field input{
+    padding-left:46px;
+    padding-right:46px;
+}
+
+.form-field .toggle-pass{
+    position:absolute;
+    right:6px;
+    top:50%;
+    transform:translateY(-50%);
+    background:transparent;
+    color:var(--text-light);
+    padding:8px 12px;
+    font-size:1rem;
+}
+
+.form-field .toggle-pass:hover{
+    color:var(--primary);
+}
+
+.auth-submit{
+    padding:15px;
+    border-radius:12px;
+    background:linear-gradient(135deg,#0d9488,#06b6d4,#10b981);
+    background-size:200% 200%;
+    color:white;
+    font-weight:600;
+    font-size:1rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    box-shadow:0 10px 22px rgba(13,148,136,.3);
+    animation:gradientShift 6s ease infinite;
+}
+
+.auth-submit:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(13,148,136,.4);
+}
+
+@keyframes gradientShift{
+    0%{ background-position:0% 50%; }
+    50%{ background-position:100% 50%; }
+    100%{ background-position:0% 50%; }
+}
+
+.auth-msg{
+    text-align:center;
+    font-weight:600;
+    min-height:20px;
+    margin-top:4px;
+}
+
+.auth-msg.success{
+    color:var(--success);
+}
+
+.auth-msg.error{
+    color:var(--danger);
+}
+
+/* Login foot */
+
+.login-foot{
+    margin-top:26px;
+    text-align:center;
+    font-size:.85rem;
+    color:var(--text-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+}
+
+.login-foot i{
+    color:var(--primary);
+}
+
+/* ===========================================================
+   RESPONSIVE
+=========================================================== */
+
+@media(max-width:900px){
+
+    .login-wrap{
+        grid-template-columns:1fr;
+        max-width:520px;
+        min-height:auto;
+    }
+
+    .login-brand{
+        padding:40px 30px;
+    }
+
+    .login-card{
+        padding:40px 30px;
+    }
+
+}
+
+@media(max-width:480px){
+
+    .login-body{
+        padding:16px;
+    }
+
+    .role-toggle{
+        grid-template-columns:1fr;
+    }
+
+    .brand-stats{
+        gap:18px;
+    }
+
+}
